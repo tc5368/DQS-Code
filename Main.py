@@ -26,10 +26,10 @@ def make():
 	file.close
 
 def run():
-	files = str(subprocess.check_output('ls'))[2:-1].split('\\n')
+	files = str(subprocess.check_output('ls'))[2:-1].split('\\r\\n')
 	print('There are these current tests in file')
 	for f in files:
-		if f not in ['','Main.py']:
+		if f != '' and f.split('.')[1] != 'py':
 			print(f)
 	file_name = str(input('Which test do you want to do: '))
 	questions, answers = get_test(file_name)
@@ -47,4 +47,28 @@ def run():
 	percentage = str(correct/len(questions)*100)
 	print(percentage + '%')
 
-run()
+def menu():
+	print('Welcome\n')
+	print('You can do any of the following options:')
+	print('Complete a test with (C)')
+	print('Make a new test with (M)')
+	print('Get Results for a test with (R)')
+	user_choice = str(input('\n>>')).upper()
+	if user_choice == 'C':
+		run()
+	elif user_choice == 'M':
+		make()
+	elif user_choice == 'R':
+		print('getting Results')
+		exit()
+	else:
+		print('invalid')
+
+menu()
+
+
+
+def add_class():
+	students  = 100:
+	for i in range(0, students):
+		subprocess.write('md class')

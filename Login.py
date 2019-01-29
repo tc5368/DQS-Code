@@ -3,7 +3,7 @@
 from tkinter import * 
 
 def show():
-	u = loginKey.get()`
+	u = loginKey.get()
 	p = password.get() #get password from entry
 	print(u,p)
 
