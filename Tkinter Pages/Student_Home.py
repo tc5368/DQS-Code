@@ -49,7 +49,7 @@ class Student_Home(Frame):
 
 #Main
 root = Tk()
-root.geometry("800x400")
+root.geometry("1290x400")
 root.title("Student Home")
 app = Student_Home(root)
 root.mainloop()
