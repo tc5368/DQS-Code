@@ -1,4 +1,4 @@
-from Tkinter import *
+from tkinter import *
 #from home page import *
 
 class viewSummative(Frame):
