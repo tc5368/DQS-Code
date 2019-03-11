@@ -65,10 +65,3 @@ def menu():
 		print('invalid')
 
 menu()
-
-
-
-def add_class():
-	students  = 100:
-	for i in range(0, students):
-		subprocess.write('md class')
