@@ -1,6 +1,5 @@
 import csv
 from tkinter import *
-global Done, logged_in_user
 
 def importing_csv_file(filename):
 	with open(filename+'.csv') as f:
@@ -12,7 +11,6 @@ def importing_csv_file(filename):
 def add_user(u,p,n,t):
 	with open('User_Info/All_Users.csv', mode='a', newline='') as f:
 		writer = csv.writer(f)
-		#print([u,p,n,t])
 		writer.writerow([u,p,n,t])
 	f.close()
 
@@ -24,22 +22,15 @@ def get_user_data():
 	return login_info
 
 def verify(u,p):
+	global logged_in_user,master
 	login_info = get_user_data()
 	if u in login_info:
 		if login_info[u] == p:
-			correct_info(u)
-
-def correct_info(user):
-	global logged_in_user
-	print('Valid Username & Password')
-	print('With username', logged_in_user)
-	logged_in_user = user
-	exit()
+			logged_in_user = u
+			master.quit()
 
 def main(new_mode=False):
-	global logged_in_user
-	logged_in_user = ''
-
+	global master
 	master = Tk()
 	master.geometry("250x80")
 	master.title("Login")
@@ -81,9 +72,5 @@ def main(new_mode=False):
 		submit = Button(master, text='Add User',command= lambda:add_user(UserName.get(),passEntry.get(),Name.get(),type_of_user.get()))
 		submit.grid(row=4,column=2,rowspan = 3)
 
-	if Done:
-		return logged_in_user
-
-		#Use this to flag when the login is succsesful use a stringVar() to store the username and then use the button push lambda fuction.
-
 	mainloop()
+	return logged_in_user
