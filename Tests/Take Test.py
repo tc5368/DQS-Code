@@ -13,8 +13,9 @@ def get_questions(filename):
 		reader = csv.reader(f)
 		raw_data = [r for r in reader]
 	f.close()
-	raw_data[0][0] = raw_data[0][0].split('\ufeff')[1]
-	return raw_data[0:10]
+	#raw_data[0][0] = raw_data[0][0].split('\ufeff')[1]
+	print(raw_data[0])
+	return raw_data[1:11]
 
 def add_result(filename,User_ID,score):
 	with open(filename+'.csv', mode='a', newline='') as f:
@@ -27,6 +28,5 @@ def simulate_test_getting_taken(number=50):
 		add_result('Template',str(i),r(0,100))
 
 
-simulate_test_getting_taken()
 print(get_questions("Template"))
 print(get_scores("Template"))
