@@ -6,16 +6,17 @@ def get_scores(filename):
 		reader = csv.reader(f)
 		raw_data = [r for r in reader]
 	f.close()
-	return raw_data[11:]
+	scores = {}
+	for i in raw_data[11:]:
+		scores.update({i[0]:i[1]})
+	return scores
 
 def get_questions(filename):
 	with open(filename+'.csv') as f:
 		reader = csv.reader(f)
 		raw_data = [r for r in reader]
 	f.close()
-	#raw_data[0][0] = raw_data[0][0].split('\ufeff')[1]
-	print(raw_data[0])
-	return raw_data[1:11]
+	return raw_data[0:10]
 
 def add_result(filename,User_ID,score):
 	with open(filename+'.csv', mode='a', newline='') as f:
