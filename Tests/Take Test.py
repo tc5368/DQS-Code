@@ -1,5 +1,7 @@
 import csv
 from random import randint as r
+import matplotlib.pyplot as plt
+import numpy as np
 
 def get_scores(filename):
 	with open(filename+'.csv') as f:
@@ -26,8 +28,28 @@ def add_result(filename,User_ID,score):
 
 def simulate_test_getting_taken(number=50):
 	for i in range(1000,1000+number):
-		add_result('Template',str(i),r(0,100))
+		add_result('Template','c'+str(i),r(0,100))
+
+def show_scores(scores):
+	for student in scores:
+		print(student,scores[student])
 
 
-print(get_questions("Template"))
-print(get_scores("Template"))
+questions = (get_questions("Template"))
+scores = (get_scores("Template"))
+
+label=[]
+sco=[]
+for student in scores:
+	label.append(student)
+	sco.append(int(scores[student]))
+
+def plot_bar_x():
+    index = np.arange(len(label))
+    plt.bar(index, sco)
+    plt.xlabel('Student Number', fontsize=5)
+    plt.ylabel('Score', fontsize=5)
+    plt.xticks(index, label, fontsize=5, rotation=30)
+    plt.show()
+
+plot_bar_x()
