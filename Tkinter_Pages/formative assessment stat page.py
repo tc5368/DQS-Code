@@ -1,6 +1,7 @@
 from tkinter import *
+global root,sel
 
-def sel():
+def sel(value):
     global root, sel
     root.quit()
 
@@ -76,11 +77,14 @@ class FormativeStats(Frame):
                                  # -1
 
 # Main
-root = Tk()
-root.title("Formative Statistic Page")
-root.geometry("1100x500")
-root.resizable(0, 0)
-app = FormativeStats(root)
+def main():
+    global root
+    root = Tk()
+    root.title("Formative Statistic Page")
+    root.geometry("1100x500")
+    root.resizable(0, 0)
+    app = FormativeStats(root)
 
-root.mainloop()
-return sel
+    root.mainloop()
+    return sel
+
