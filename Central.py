@@ -1,5 +1,6 @@
 from User_Info import login as lg
-import Tkinter_pages.Student_Home.py
+from Tkinter_Pages import Student_Home
+from Tkinter_Pages import Lecturer_Home
 
 print('Logging in now')
 user_id = lg.main()
@@ -13,3 +14,9 @@ def get_info():
 user_info = get_info()
 print('Succsesfully found info: ',user_info)
 
+print('Finding the right window')
+if user_info[3] == 'S':
+	Student_Home.main()
+else:
+	Lecturer_Home.main()
+print('User Home opened')

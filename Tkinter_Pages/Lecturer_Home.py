@@ -76,9 +76,9 @@ class Lecturer_Home(Frame):
 		
 
 
-#Main
-root = Tk()
-root.geometry("1500x750")
-root.title("Lecturer Home")
-app = Lecturer_Home(root)
-root.mainloop()
+def main():
+	root = Tk()
+	root.geometry("1500x750")
+	root.title("Lecturer Home")
+	app = Lecturer_Home(root)
+	root.mainloop()
