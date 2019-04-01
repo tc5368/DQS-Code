@@ -9,6 +9,7 @@ def importing_csv_file(filename):
 	return raw_data[1:]
 
 def add_user(u,p,n,t):
+	global master
 	with open('User_Info/All_Users.csv', mode='a', newline='') as f:
 		writer = csv.writer(f)
 		writer.writerow([u,p,n,t])
@@ -27,10 +28,10 @@ def verify(u,p):
 	if u in login_info:
 		if login_info[u] == p:
 			logged_in_user = u
-			master.quit()
+			master.destroy()
 
 def main(new_mode=False):
-	global master
+	global master, second_master
 	master = Tk()
 	master.geometry("250x80")
 	master.title("Login")

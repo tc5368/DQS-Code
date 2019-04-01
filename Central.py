@@ -18,5 +18,5 @@ print('Finding the right window')
 if user_info[3] == 'S':
 	Student_Home.main()
 else:
-	Lecturer_Home.main()
-print('User Home opened')
+	a = Lecturer_Home.main()
+print('User Home opened, and returned with',a)

@@ -1,6 +1,25 @@
-
+global root
 from tkinter import *
 
+def fun_account_options(value):
+	global root, valueG
+	valueG = value
+	root.destroy()
+
+def fun_Create_Test():
+	print("")
+
+def fun_Edit_Test():
+	print("")
+
+def fun_View_Formative():
+	print("")
+
+def fun_View_Summative():
+	print("")
+
+def fun_Student_Search():
+	print("")
 
 class Lecturer_Home(Frame):
 	def __init__(self,master):
@@ -12,41 +31,24 @@ class Lecturer_Home(Frame):
 		self.openSummative()
 		self.openFormative()
 
-	def fun_account_options():
-		print("")
-
-	def fun_Create_Test():
-		print("")
-
-	def fun_Edit_Test():
-		print("")
-
-	def fun_View_Formative():
-		print("")
-
-	def fun_View_Summative():
-		print("")
-
-	def fun_Student_Search():
-		print("")
 
 	def create_Buttons(self):
-		Account_Options = Button(self, text='Account Options',command=self.fun_account_options)
+		Account_Options = Button(self, text='Account Options',command=lambda:fun_account_options('H'))
 		Account_Options.grid(row=1,column=17)
 
-		Create_Test = Button(self, text='Create Test',command=self.fun_Create_Test)
+		Create_Test = Button(self, text='Create Test',command=fun_Create_Test)
 		Create_Test.grid(row=2,column=17)
 
-		Edit_Test = Button(self, text='Edit Test',command=self.fun_Edit_Test)
+		Edit_Test = Button(self, text='Edit Test',command=fun_Edit_Test)
 		Edit_Test.grid(row=3,column=17)
 
-		Student_Search = Button(self, text='Student Search',command=self.fun_Student_Search)
+		Student_Search = Button(self, text='Student Search',command=fun_Student_Search)
 		Student_Search.grid(row=4,column=17)
 
-		View_Formative = Button(self, text='View Formative Results',command=self.fun_View_Formative)
+		View_Formative = Button(self, text='View Formative Results',command=fun_View_Formative)
 		View_Formative.grid(row=5,column=17)
 
-		View_Summative = Button(self, text='View Summative Results',command=self.fun_View_Summative)
+		View_Summative = Button(self, text='View Summative Results',command=fun_View_Summative)
 		View_Summative.grid(row=6,column=17)
 
 	def create_labels(self):
@@ -77,8 +79,10 @@ class Lecturer_Home(Frame):
 
 
 def main():
+	global root
 	root = Tk()
 	root.geometry("1500x750")
 	root.title("Lecturer Home")
 	app = Lecturer_Home(root)
 	root.mainloop()
+	return valueG	
