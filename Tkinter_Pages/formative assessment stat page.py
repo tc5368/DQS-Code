@@ -88,3 +88,4 @@ def main():
     root.mainloop()
     return sel
 
+print(main())
