@@ -1,7 +1,22 @@
 from User_Info import login as lg
+from Tkinter_Pages import Student_Home
+from Tkinter_Pages import Lecturer_Home
 
 print('Logging in now')
 user_id = lg.main()
-print('Sucsessfully loged in %s' %user_id)
+print('Sucsessfully logged in %s' %user_id)
 
+user_info = lg.importing_csv_file('User_Info/All_Users')
+print('Getting Info')
+def get_info():
+	for e in user_info:
+		if e[0] == user_id: return e
+user_info = get_info()
+print('Succsesfully found info: ',user_info)
 
+print('Finding the right window')
+if user_info[3] == 'S':
+	Student_Home.main()
+else:
+	a = Lecturer_Home.main()
+print('User Home opened, and returned with',a)
