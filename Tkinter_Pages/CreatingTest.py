@@ -73,6 +73,7 @@ class Questionaire(Frame):
 
 		radiobutton2 = Radiobutton(self, text = "Formative", value = "F", command = self.Form)
 		radiobutton2.grid(row = 65,column = 1)
+		
 	def home():
 		print("")
 
@@ -182,14 +183,6 @@ class Questionaire(Frame):
 					csv_writer.writerow(Test[i])
 		else:
 			messagebox.showinfo("Error","Please Select A Test Type")
-		
-
-		
-
-		
-
-
-
 
 #Main
 root = Tk()
