@@ -1,6 +1,7 @@
 from tkinter import *
 import tkinter as tk
 import csv
+import os
 
 class FormativeTest(Frame):
 
@@ -9,7 +10,7 @@ class FormativeTest(Frame):
         self.grid()
         self.attempt = 1
         self.widget()
-        self.filename = '/Formulative/'+filename+'.csv'
+        self.filename = (str(os.getcwd())+'\\Formulative\\'+filename+'.csv')
         print(filename)
         self.var = {}
         self.select = []
@@ -33,7 +34,6 @@ class FormativeTest(Frame):
 
 
     def attempt_label(self):
-        
         if self.attempt == 1:
             label2 = Label(self, text = "Attempt 1/3")
             label2.grid(row=1, column=11)
@@ -46,7 +46,6 @@ class FormativeTest(Frame):
 
     
     def test(self):
-
         row_n = 2
         index = 0
 
@@ -74,29 +73,19 @@ class FormativeTest(Frame):
                 row_n += 2
                 index += 1
 
-
-
-
     def selection(self):
-        
         choice = 0
         for i in range(10):
             choice = self.var[i].get()
             self.select.append(choice)
         self.saved_an = self.select[-10:]
-
-
-
-        
+   
     def save_exit(self):
-        
         print(self.saved_an)
         self.destroy()
 
-
-            
+  
     def checkAnswers(self):
-
         index = 0
         with open(self.filename) as csvfile:
             csvread = csv.reader(csvfile)
@@ -122,8 +111,6 @@ class FormativeTest(Frame):
                 index +=1
 
     def submit(self):
-        
-        
         if self.attempt == 1 or self.attempt == 2:
             self.attempt += 1
             self.checkAnswers(self.filename)
@@ -136,8 +123,6 @@ class FormativeTest(Frame):
             print("Mark: " + str(self.mark))
         self.attempt_label()
     
-        
-
 
 def main(filename):
     root = Tk()
@@ -145,5 +130,3 @@ def main(filename):
     root.geometry("1200x900")
     app = FormativeTest(root, filename)
     root.mainloop()
-
-main('q')
