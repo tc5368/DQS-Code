@@ -16,40 +16,38 @@ class Questionaire(Frame):
 		Frame.__init__(self, master)
 		#self.master = master
 		self.grid()
-		self.labels()
-		self.Textboxes()
-		self.buttons()
+		self.Building()
 
-	def Textboxes(self):
+	def Building(self):
 		self.Question = Entry()
-		self.Question.grid(row=0,column=2)
+		self.Question.grid(row=0,column=1,columnspan=4)
 
 		self.Answer = Entry()
-		self.Answer.grid(row=4,column=2)
+		self.Answer.grid(row=1,column=1,columnspan=4)
 
-		#self.CorrectAns = Entry()
-		#self.CorrectAns.grid(row=6,column=2)
 
 		self.Feedback = Entry()
-		self.Feedback.grid(row=8,column=2)  
+		self.Feedback.grid(row=2,column=1,columnspan=4)
 
-	def buttons(self):
 		button1 = Button(self, text="Next Answer", command =self.Next_Answer )
-		button1.grid(row=40, column = 40)
+		button1.grid(row=40, column = 40,columnspan=10)
 
 		button2 = Button(self, text= "Next Question", command =self.Next_Question)
-		button2.grid(row=41,column = 40)
+		button2.grid(row=41,column = 40,columnspan=10)
 
 		button3 = Button(self, text="Saving", command =self.Saving )
-		button3.grid(row=42, column = 40)
+		button3.grid(row=42, column = 40,columnspan=10)  
 
-	def labels(self):
 		question_number_label= StringVar()
-		Label(self, textvariable=question_number_label).grid(row=0)
+		Label(self, textvariable=question_number_label).grid(row=0,column=0,columnspan=1)
 		question_number_label.set("Question Number 1")
-		Label(self,text ="Answer").grid(row=4)
-		#Label(self,text ="Correct Answer's Number").grid(row=6)
-		Label(self,text ="Feedback").grid(row=8)
+		Label(self,text ="Answer").grid(row=1,column=0,columnspan=1)
+		
+		Label(self,text ="Feedback").grid(row=2,column=0,columnspan=1)
+
+		Label(self,text ="The First Answer Inputed Needs To Be The Correct Answer").grid(row=3,column=0,columnspan=1)
+
+
 
 
 	
@@ -66,6 +64,8 @@ class Questionaire(Frame):
 			messagebox.showinfo("Error","The Question Feild Has Not Been Filled Out")
 		elif f == "":
 			messagebox.showinfo("Error","The Feedback Section Has Not Been Filled Out")
+		elif len(Questionaire.SavingList) == 10:
+			messagebox.showinfo("Error","10 Questions Have Already Been Entered In This Test")
 		else:
 			Questionaire.PerQuestionStorage.append(q)
 
@@ -74,23 +74,15 @@ class Questionaire(Frame):
 				Questionaire.PerQuestionStorage.append(position)
 			del Questionaire.Answer_Storage_Temp[:]
 
-
-			#Questionaire.PerQuestionStorage.extend(Questionaire.Answer_Storage_Temp)
 			Questionaire.PerQuestionStorage.append(f)
 			self.Question.delete(0,END)
 			self.Answer.delete(0,END)
 			self.Feedback.delete(0,END)
-			#Questionaire.Answer_Storage_Temp.clear()
-			print("BeforePerQuestionStorage")
-			print(Questionaire.PerQuestionStorage)
 
-			"""for x in range(len(Questionaire.PerQuestionStorage)):
-													positiontwo = Questionaire.PerQuestionStorage[x]
-													Questionaire.SavingList.append(positiontwo)
-												del Questionaire.PerQuestionStorage[:]"""
-
-			Questionaire.SavingList.append(Questionaire.PerQuestionStorage)
-			#Questionaire.SavingList.append(Questionaire.PerQuestionStorage)
+			new_list = Questionaire.PerQuestionStorage.copy()
+			del Questionaire.PerQuestionStorage[:]
+			Questionaire.SavingList.append(new_list)
+			
 			print("PerQuestionStorage")
 			print(Questionaire.PerQuestionStorage)
 			print("SavingList")
@@ -110,13 +102,13 @@ class Questionaire(Frame):
 			messagebox.showinfo("Error","Answers are full")
 
 	def Saving(self):
-		#Test=["Question","CorrectAns","incorrect","incorrect","incorrect","incorrect","Feedback"]
+		
 		Test = Questionaire.SavingList
 		print("Saving")
 		with open('Template.csv',mode="a",newline='') as new_file:
 			csv_writer = csv.writer(new_file)
 			for i in range(len(Test)):
-				csv_writer.writerow(Test)
+				csv_writer.writerow(Test[i])
 
 
 #Main
