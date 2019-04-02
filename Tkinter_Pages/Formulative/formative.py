@@ -24,15 +24,7 @@ class FormativeTest(Frame):
         label1 = Label(self, text = "Formative Test")
         label1.grid(columnspan = 2)
         
-        if self.attempt == 1:
-            label2 = Label(self, text = "Attempt 1/3")
-            label2.grid(row=1, column=11)
-        elif self.attempt == 2:
-            label2 = Label(self, text = "Attempt 2/3")
-            label2.grid(row=1, column=11)
-        else:
-            label2 = Label(self, text = "Attempt 3/3")
-            label2.grid(row=1, column=11)
+        self.attempt_label()
             
         label3 = Label(self, text = "Test ID\n Lecturer\n Module\n Due Date")
         label3.grid(row=2, column=11)
@@ -43,6 +35,17 @@ class FormativeTest(Frame):
         button2.grid(row=5,column = 11)
 
 
+    def attempt_label(self):
+        
+        if self.attempt == 1:
+            label2 = Label(self, text = "Attempt 1/3")
+            label2.grid(row=1, column=11)
+        elif self.attempt == 2:
+            label2 = Label(self, text = "Attempt 2/3")
+            label2.grid(row=1, column=11)
+        else:
+            label2 = Label(self, text = "Attempt 3/3")
+            label2.grid(row=1, column=11)
 
     
     def test(self):
@@ -102,13 +105,19 @@ class FormativeTest(Frame):
             csvread = csv.reader(csvfile)
             next(csvread)
             for line in csvread:
-                
-                if int(line[7]) == self.saved_an[index]:
+
+                if self.saved_an == []:
+                    print("")
+
+                elif self.saved_an[index] == 0:
+                    print(line[0]+" you didn't answer this question")
+
+                    
+                elif int(line[7]) == self.saved_an[index]:
                     print(line[0]+" is correct")
                     self.mark += 1
                     
-                elif self.saved_an[index] == 0:
-                    print(line[0]+" you didn't answer this question")
+                
                     
                 else:
                     print(line[0]+" is wrong")
@@ -128,7 +137,7 @@ class FormativeTest(Frame):
             self.checkAnswers()
             
             print("Mark: " + str(self.mark))
-            
+        self.attempt_label()
     
         
 
@@ -139,3 +148,5 @@ root.title("Formative Test")
 root.geometry("1200x900")
 app = FormativeTest(root)
 root.mainloop()
+
+

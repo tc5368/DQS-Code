@@ -1,6 +1,13 @@
 from tkinter import *
-class Student_Home(Frame):
+global test_id, root
 
+def take_example_test():
+    global test_id, root
+    print('Taking the test.')
+    test_id = 'q'
+    root.destroy()
+
+class Student_Home(Frame):
     def __init__(self,master):
         Frame.__init__(self,master)
         self.grid()
@@ -10,11 +17,8 @@ class Student_Home(Frame):
         self.openSummative()
         self.openFormative()
 
-    def account_options_fun():
-        print("")
-
     def create_Buttons(self):
-        Account_Options = Button(self, text='Account Options',command=self.account_options_fun)
+        Account_Options = Button(self, text='Take Example Test',command=take_example_test)
         Account_Options.grid(row=1,column=11)
 
     def create_labels(self):
@@ -42,11 +46,11 @@ class Student_Home(Frame):
         t.grid(row=7,column=5,columnspan=4,rowspan=2)
         
 
-
-
 def main():
+    global root
     root = Tk()
     root.geometry("1290x400")
     root.title("Student Home")
     app = Student_Home(root)
     root.mainloop()
+    return test_id

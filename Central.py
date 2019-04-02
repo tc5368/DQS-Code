@@ -1,6 +1,7 @@
 from User_Info import login as lg
 from Tkinter_Pages import Student_Home
 from Tkinter_Pages import Lecturer_Home
+from Formulative import formative
 
 print('Logging in now')
 user_id = lg.main()
@@ -16,7 +17,9 @@ print('Succsesfully found info: ',user_info)
 
 print('Finding the right window')
 if user_info[3] == 'S':
-	Student_Home.main()
+	test = Student_Home.main()
+	print(test)
+	formative.main(test)
 else:
-	a = Lecturer_Home.main()
-print('User Home opened, and returned with',a)
+	Lecturer_Home.main()
+
