@@ -21,11 +21,13 @@ class summativeStats(Frame):
 		lblSum = Label(self, text = ' \t View Summative Results', font = ('MS', 14, 'bold'))
 		lblSum.grid(row=0, column=4 , columnspan = 6)
 
+
+
 	def selectTest(self):
 		#global results
 		
 		
-		for file in os.listdir("H:/DQS-Group-Work/DQS-Code/Tkinter_Pages/Formulative"):
+		for file in os.listdir("Summative"):
 			if file.endswith(".csv"):
 				summativeStats.results.append(file)
 			print(summativeStats.results)
@@ -49,12 +51,17 @@ class summativeStats(Frame):
 		def change_dropdown(*args):
 			#print("Dis")
 			#print(var.get())
-			#for files in summative.results:
-			FileName = str(var.get())
-			with open(FileName) as f:
-				reader = csv.reader(f)
-				for row in reader:
-					print(row)
+			
+			for files in summativeStats.results:
+				FileName = str(var.get())
+				with open("Summative/%s " %FileName) as f:
+					reader = csv.reader(f)
+					t = Text(self)
+					t.grid(row=0,column=0)
+					for row in reader:
+						popop = row.insert(7,"\n")
+						t.insert(1.0,' '.join(row))
+
 			
 
 
