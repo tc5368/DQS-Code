@@ -1,9 +1,13 @@
 from tkinter import *
+from tkinter import messagebox
 import os
 global results
 import csv
-class summativeStats(Frame):
+import matplotlib.pyplot as plt
+import numpy as np
 
+class summativeStats(Frame):
+#IMPORTANT COMMENT LINE 62
 	results = []
 	def __init__(self,master):
 		Frame.__init__(self, master)
@@ -11,10 +15,11 @@ class summativeStats(Frame):
 		self.selectTest()
 		self.homeButton()
 		self.dropdownMenu()
+		self.createGraph()
 
 	def homeButton(self):
 		#creates a button that allows user to go to the home page
-		butHome = Button(self, text = 'Home', font = ('MS', 9, 'bold'), command = self.home) #connect button to home page
+		butHome = Button(self, text = 'Home', font = ('MS', 9, 'bold')) #connect button to home page
 		butHome.grid(row=0, column = 0, columnspan = 3)
 
 		#view summative results title
@@ -22,10 +27,9 @@ class summativeStats(Frame):
 		lblSum.grid(row=0, column=4 , columnspan = 6)
 
 
-
+#LINE 62 DONT FORGET UR COMMENT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	def selectTest(self):
 		#global results
-		
 		
 		for file in os.listdir("Summative"):
 			if file.endswith(".csv"):
@@ -34,10 +38,7 @@ class summativeStats(Frame):
 
 	def home(self):
 		print("Conor Was Here")
-		with open('Template.csv') as f:
-			reader = csv.reader(f)
-			for row in reader:
-				print(row)
+		
 		
 
 	def dropdownMenu(self):
@@ -47,30 +48,57 @@ class summativeStats(Frame):
 		popupMenu = OptionMenu(self, var, *summativeStats.results)
 		popupMenu.grid(row=50, column=50)
 		Label(root, text = "Choose a Test to view")
-
+		self.GraphSome=StringVar()
+		Label(root, textvariable=self.GraphSome).grid(row=25,column=25)
+		self.GraphSome.set("The Current Test Being Displayed Is: " )
 		def change_dropdown(*args):
 			#print("Dis")
 			#print(var.get())
 			
 			for files in summativeStats.results:
-				FileName = str(var.get())
-				with open("Summative/%s " %FileName) as f:
+				self.FileName = str(var.get())
+				with open("Summative/%s " %self.FileName) as f:
+					reader = csv.reader(f)
+					for i in range(0,13):
+						next(f)
 					reader = csv.reader(f)
 					t = Text(self)
 					t.grid(row=0,column=0)
 					for row in reader:
-						popop = row.insert(7,"\n")
+						popop = row.insert(7,"\n")         # IMPORTANT change to 2 for student id and test score
 						t.insert(1.0,' '.join(row))
-
-			
-
+			self.GraphSome.set(self.FileName)
 
 		var.trace('w', change_dropdown)
 
 
+	def createGraph(self):
 
+		btnCreateGraph = Button(self, text = 'Create a Graph', font = ('MS', 9, 'bold'), command = self.actualGraph)
+		btnCreateGraph.grid(row=55, column = 50, columnspan = 3)
 
+	def actualGraph(self):
+		#var = StringVar(root)
+		#for files in summativeStats.results:
 
+		#FileName = "Template.csv"#self.GraphSome.get()
+		#print(FileName)
+		load =np.loadtxt("Summative/%s" % self.FileName,skiprows=13,dtype=str)
+		total = 0
+		rowscounted = 0
+		clean = []
+		for e in load:
+			a = e.split(',')
+			clean.append([a[0],a[1]])
+		print(clean)
+
+		for i in clean:
+			total += int(i[1])
+		print(total)
+
+		print(total/len(clean))		
+
+						
 root= Tk()
 root.title("Summative Statistic Page")
 root.geometry("1100x500")
