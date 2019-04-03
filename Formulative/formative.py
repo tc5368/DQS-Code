@@ -29,7 +29,7 @@ class FormativeTest(Frame):
 
         button1 = Button(self, text="Save and Exit", command = self.save_exit)
         button1.grid(row=4, column = 11)
-        button2 = Button(self, text= "Submit", command = lambda:self.submit( ))
+        button2 = Button(self, text= "Submit", command = self.submit)
         button2.grid(row=5,column = 11)
 
 
@@ -47,7 +47,7 @@ class FormativeTest(Frame):
     
     def test(self):
         row_n = 2
-        index = 0
+        index = 1
 
         with open(self.filename) as csvfile:
             csvread = csv.reader(csvfile)
@@ -74,11 +74,7 @@ class FormativeTest(Frame):
                 index += 1
 
     def selection(self):
-        choice = 0
-        for i in range(10):
-            choice = self.var[i].get()
-            self.select.append(choice)
-        self.saved_an = self.select[-10:]
+        None
    
     def save_exit(self):
         print(self.saved_an)
@@ -87,11 +83,12 @@ class FormativeTest(Frame):
   
     def checkAnswers(self):
         index = 0
+        print(self.answers)
         with open(self.filename) as csvfile:
             csvread = csv.reader(csvfile)
             next(csvread)
             for line in csvread:
-
+                print(line,self.answers)
                 if self.saved_an == []:
                     print("")
 
@@ -109,16 +106,23 @@ class FormativeTest(Frame):
                 index +=1
 
     def submit(self):
+        answers = []
+        for i in self.var:
+            answers.append(self.var[i].get())
+        #print('You gave answers: ',answers)
+        self.answers = answers
+
         if self.attempt == 1 or self.attempt == 2:
             self.attempt += 1
-            self.checkAnswers(self.filename)
+            self.checkAnswers()
             
         elif self.attempt == 3:
             self.attempt = 1
             self.mark = 0
-            self.checkAnswers(self.filename)
+            self.checkAnswers()
             
             print("Mark: " + str(self.mark))
+            self.destroy('')
         self.attempt_label()
     
 
