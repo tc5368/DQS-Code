@@ -159,7 +159,7 @@ class Questionaire(Frame):
 					csv_writer.writerow(Test[i])
 		elif Questionaire.TestType=="F":
 			i = 0
-			while os.path.exists("TF_%s.csv" % i):
+			while os.path.exists(str(os.getcwd())+'\\Formulative\\'+"TF_%s.csv" % i):
 				i += 1
 
 			fh = open(str(os.getcwd())+'\\Formulative\\'+"TF_%s.csv" % i, "w")
