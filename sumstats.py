@@ -172,6 +172,6 @@ class summativeStats(Frame):
 				
 root= Tk()
 root.title("Summative Statistic Page")
-root.geometry("1600x1600")
+root.geometry("600x400")
 app = summativeStats(root)
 root.mainloop()
