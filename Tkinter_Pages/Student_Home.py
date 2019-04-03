@@ -1,6 +1,6 @@
 from tkinter import *
 global test_id, root
-
+import os
 def take_example_test():
     global test_id, root
     print('Taking the test.')
@@ -13,13 +13,29 @@ def test_selected(test_name):
     root.destroy()
 
 class Student_Home(Frame):
+    SummativeResults=[]
+    FormativeResults=[]
+
     def __init__(self,master):
         Frame.__init__(self,master)
         self.grid()
         self.create_Buttons()
         self.create_labels()
-        self.openSummative()
-        self.openFormative()
+        self.openTests()
+        self.selectTest()
+
+    def selectTest(self):
+        #global results
+        
+        for file in os.listdir("Summative"):
+            if file.endswith(".csv"):
+                Student_Home.SummativeResults.append(file)
+            #print(Student_Home.SummativeResults)
+                
+        for filetwo in os.listdir("Formulative"):
+            if filetwo.endswith(".csv"):
+                Student_Home.FormativeResults.append(filetwo)
+            #print(Student_Home.FormativeResults)
 
     def create_Buttons(self):
         Template_test = Button(self, text='Take Example Test',command=take_example_test)
@@ -40,13 +56,15 @@ class Student_Home(Frame):
         Label(self,textvariable=Formative_Tests).grid(row=6,column=10)
         Formative_Tests.set("Formative_Tests Tests To Take")
 
-    def openFormative(self):
-        t = Text(self)
-        t.grid(row=7,column=10,columnspan=4,rowspan=2)
-
-    def openSummative(self):
-        t = Text(self)
-        t.grid(row=7,column=5,columnspan=4,rowspan=2)
+    def openTests(self):
+        var = StringVar(root)
+        
+        popupMenu = OptionMenu(self, var, *Student_Home.FormativeResults)
+        popupMenu.grid(row=5, column=7)
+        vartwo=StringVar(root)
+        popupMenutwo = OptionMenu(self, vartwo, *Student_Home.FormativeResults)
+        popupMenutwo.grid(row=5, column=6)
+        
         
 
 def main():
