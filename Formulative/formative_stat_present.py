@@ -5,13 +5,22 @@ import matplotlib.pyplot as plt
 import numpy as np
 global root
 
+import formative_stat_selection
+
+def home():
+    global root
+    root.destroy()
+
+
 class FormativeStats(Frame):
     # GUI Setup
-    def __init__(self, master):
+    def __init__(self, master,test):
         # Initialise Formative Stats class
         
         Frame.__init__(self, master)
         self.grid()
+        self.filename = test
+        print(self.filename)
         self.introLabel()
         self.searches()
         self.stats()
@@ -26,17 +35,12 @@ class FormativeStats(Frame):
     def searches(self):
         # Test ID needs to be replaced with the test ID of the stats this page is about
         searchLabel = Label(self, text="Test ID", font= "Helvetica 18 bold")
-        searchLabel.grid(row=1, column=1)
-
-        def home():
-            global root
-            root.destroy()
-                
+        searchLabel.grid(row=1, column=1)    
         Button(self, text='Home', fg = "black", bg= "white", font = "Helvetica 18 bold", command=home).grid(row=1, column=2, padx=5, pady=5)        
 
     def stats(self):
         def bar_graph_a():
-            get_lists("Templates")
+            get_lists(self.filename)
             for student in scores:
                 label.append(student)
                 sco.append(int(scores[student]))
@@ -48,7 +52,7 @@ class FormativeStats(Frame):
             plt.show()
 
         def bar_graph_b():
-            get_lists("Template")
+            get_lists(self.filename)
             top_scores = []
             for i in range(0, 16):
                 top_scores.append(max(sco))
@@ -61,7 +65,7 @@ class FormativeStats(Frame):
             plt.show()
 
         def bar_graph_c():
-            get_lists("Template")
+            get_lists(self.filename)
             bottom_scores = []
             for i in range(0, 16):
                 bottom_scores.append(min(sco))
@@ -91,8 +95,8 @@ class FormativeStats(Frame):
 
         label=[]
         sco=[]
-        scores = (get_scores("Template"))
-        get_lists("Template")
+        scores = (get_scores(self.filename))
+        get_lists(self.filename)
         
         average_score = 0
         count = 0
@@ -109,12 +113,14 @@ class FormativeStats(Frame):
             
 def main():
     global root
+    test = formative_stat_selection.main()
     root = Tk()
     root.title("Formative Statistic Page")
     root.geometry("1000x500")
     root.resizable(0, 0)
-    app = FormativeStats(root)
+    app = FormativeStats(root,test)
 
     root.mainloop()
-    print('Going Hopme')
+    print('Going Home')
 
+main()
