@@ -7,19 +7,25 @@ def take_example_test():
     test_id = 'q'
     root.destroy()
 
+def test_selected(test_name):
+    global root, test_id
+    test_id = test_name
+    root.destroy()
+
 class Student_Home(Frame):
     def __init__(self,master):
         Frame.__init__(self,master)
         self.grid()
         self.create_Buttons()
         self.create_labels()
-        self.create_textboxes()
         self.openSummative()
         self.openFormative()
 
     def create_Buttons(self):
-        Account_Options = Button(self, text='Take Example Test',command=take_example_test)
-        Account_Options.grid(row=1,column=11)
+        Template_test = Button(self, text='Take Example Test',command=take_example_test)
+        Template_test.grid(row=1,column=11)
+        Select_test = Button(self, text='Submit',command=lambda:test_selected('THE SELECTED TEST'))
+        Select_test.grid(row=1,column=12)
 
     def create_labels(self):
         Title= StringVar()
@@ -33,9 +39,6 @@ class Student_Home(Frame):
         Formative_Tests= StringVar()
         Label(self,textvariable=Formative_Tests).grid(row=6,column=10)
         Formative_Tests.set("Formative_Tests Tests To Take")
-
-    def create_textboxes(self):
-        print("Put Stuff Here")
 
     def openFormative(self):
         t = Text(self)

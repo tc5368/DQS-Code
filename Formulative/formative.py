@@ -29,7 +29,7 @@ class FormativeTest(Frame):
 
         button1 = Button(self, text="Save and Exit", command = self.save_exit)
         button1.grid(row=4, column = 11)
-        button2 = Button(self, text= "Submit", command = lambda:self.submit(self.filename))
+        button2 = Button(self, text= "Submit", command = lambda:self.submit( ))
         button2.grid(row=5,column = 11)
 
 
@@ -102,8 +102,6 @@ class FormativeTest(Frame):
                 elif int(line[7]) == self.saved_an[index]:
                     print(line[0]+" is correct")
                     self.mark += 1
-                    
-                
                     
                 else:
                     print(line[0]+" is wrong")
