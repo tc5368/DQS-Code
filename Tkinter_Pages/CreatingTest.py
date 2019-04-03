@@ -23,6 +23,7 @@ class Questionaire(Frame):
 
 	def Building(self):
 		TestTypeD = ["S"]
+		
 		self.Question = Entry()
 		self.Question.grid(row=0,column=1,columnspan=4)
 
@@ -188,4 +189,10 @@ def main():
 	root.geometry("800x400")
 	root.title("Create Test Page")
 	app = Questionaire(root)
+<<<<<<< HEAD
 	root.mainloop()
+
+main()
+=======
+	root.mainloop()
+>>>>>>> 29fd93208878746c3a7ef784337218f45a76c6ea
