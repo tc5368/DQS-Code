@@ -1,24 +1,22 @@
 from tkinter import *
 import tkinter as tk
 import csv
-
-
+import os
 
 class FormativeTest(Frame):
 
-    def __init__(self, master):
+    def __init__(self, master, filename):
         Frame.__init__(self, master)
         self.grid()
         self.attempt = 1
         self.widget()
+        self.filename = (str(os.getcwd())+'\\Formulative\\'+filename+'.csv')
+        print(filename)
         self.var = {}
         self.select = []
         self.saved_an = []
         self.test()
         self.mark = 0
-        
-
-
 
     def widget(self):
         label1 = Label(self, text = "Formative Test")
@@ -31,12 +29,11 @@ class FormativeTest(Frame):
 
         button1 = Button(self, text="Save and Exit", command = self.save_exit)
         button1.grid(row=4, column = 11)
-        button2 = Button(self, text= "Submit", command = self.submit)
+        button2 = Button(self, text= "Submit", command = lambda:self.submit( ))
         button2.grid(row=5,column = 11)
 
 
     def attempt_label(self):
-        
         if self.attempt == 1:
             label2 = Label(self, text = "Attempt 1/3")
             label2.grid(row=1, column=11)
@@ -49,11 +46,10 @@ class FormativeTest(Frame):
 
     
     def test(self):
-
         row_n = 2
         index = 0
 
-        with open('q.csv') as csvfile:
+        with open(self.filename) as csvfile:
             csvread = csv.reader(csvfile)
             next(csvread)
             for line in csvread:
@@ -77,31 +73,21 @@ class FormativeTest(Frame):
                 row_n += 2
                 index += 1
 
-
-
-
     def selection(self):
-        
         choice = 0
         for i in range(10):
             choice = self.var[i].get()
             self.select.append(choice)
         self.saved_an = self.select[-10:]
-
-
-
-        
+   
     def save_exit(self):
-        
         print(self.saved_an)
         self.destroy()
 
-
-            
+  
     def checkAnswers(self):
-
         index = 0
-        with open('q.csv') as csvfile:
+        with open(self.filename) as csvfile:
             csvread = csv.reader(csvfile)
             next(csvread)
             for line in csvread:
@@ -117,36 +103,28 @@ class FormativeTest(Frame):
                     print(line[0]+" is correct")
                     self.mark += 1
                     
-                
-                    
                 else:
                     print(line[0]+" is wrong")
                     
                 index +=1
 
     def submit(self):
-        
-        
         if self.attempt == 1 or self.attempt == 2:
             self.attempt += 1
-            self.checkAnswers()
+            self.checkAnswers(self.filename)
             
         elif self.attempt == 3:
             self.attempt = 1
             self.mark = 0
-            self.checkAnswers()
+            self.checkAnswers(self.filename)
             
             print("Mark: " + str(self.mark))
         self.attempt_label()
     
-        
 
-
-
-root = Tk()
-root.title("Formative Test")
-root.geometry("1200x900")
-app = FormativeTest(root)
-root.mainloop()
-
-
+def main(filename):
+    root = Tk()
+    root.title("Formative Test")
+    root.geometry("1200x900")
+    app = FormativeTest(root, filename)
+    root.mainloop()
