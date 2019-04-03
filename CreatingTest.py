@@ -174,5 +174,3 @@ def main():
 	root.title("Create Test Page")
 	app = Questionaire(root)
 	root.mainloop()
-
-main()
