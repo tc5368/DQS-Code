@@ -74,8 +74,8 @@ class summativeStats(Frame):
 
 	def createGraph(self):
 
-		btnCreateGraph = Button(self, text = 'Create a Graph', font = ('MS', 9, 'bold'), command = self.plot_average)
-		btnCreateGraph.grid(row=55, column = 50, columnspan = 3)
+		"""btnCreateGraph = Button(self, text = 'Create a Graph', font = ('MS', 9, 'bold'), command = self.plot_average)
+								btnCreateGraph.grid(row=55, column = 50, columnspan = 3)"""
 
 	def cleanData(self):
 		#var = StringVar(root)

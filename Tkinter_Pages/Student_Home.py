@@ -23,8 +23,9 @@ class Student_Home(Frame):
         self.create_labels()
         self.openTests()
         self.selectTest()
+        
 
-    def selectTest(self):
+    def openTests(self):
         #global results
         
         for file in os.listdir("Summative"):
@@ -56,14 +57,17 @@ class Student_Home(Frame):
         Label(self,textvariable=Formative_Tests).grid(row=6,column=10)
         Formative_Tests.set("Formative_Tests Tests To Take")
 
-    def openTests(self):
+    def selectTest(self):
         var = StringVar(root)
-        
-        popupMenu = OptionMenu(self, var, *Student_Home.FormativeResults,)
+        #global SummativeResults
+        popupMenu = OptionMenu(self, var, *Student_Home.SummativeResults)
         popupMenu.grid(row=5, column=7)
-        vartwo=StringVar(root)
-        popupMenutwo = OptionMenu(self, vartwo, *Student_Home.FormativeResults)
-        popupMenutwo.grid(row=5, column=6)
+
+        var = StringVar(root)
+        #global SummativeResults
+        popupMenu = OptionMenu(self, var, *Student_Home.FormativeResults)
+        popupMenu.grid(row=5, column=6)
+
         
         
 

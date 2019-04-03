@@ -23,6 +23,7 @@ class Questionaire(Frame):
 
 	def Building(self):
 		TestTypeD = ["S"]
+		
 		self.Question = Entry()
 		self.Question.grid(row=0,column=1,columnspan=4)
 
@@ -184,9 +185,11 @@ class Questionaire(Frame):
 		else:
 			messagebox.showinfo("Error","Please Select A Test Type")
 
-#Main
-root = Tk()
-root.geometry("800x400")
-root.title("Create Test Page")
-app = Questionaire(root)
-root.mainloop()
+def main():
+	root = Tk()
+	root.geometry("800x400")
+	root.title("Create Test Page")
+	app = Questionaire(root)
+	root.mainloop()
+
+main()
