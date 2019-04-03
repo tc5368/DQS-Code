@@ -35,10 +35,6 @@ class FormativeStats(Frame):
         searchLabel = Label(self, text="Test ID", font= "Helvetica 18 bold")
         searchLabel.grid(row=1, column=1)
 
-        #e1 = Entry(self)
-        #e1.grid(row=1, column=1)
-
-        Button(self, text='Search Test', fg = "black", bg= "white", font = "Helvetica 18 bold").grid(row=1, column=3, sticky=W, padx=10, pady=10)
         Button(self, text='Home',command=home, fg = "black", bg= "white", font = "Helvetica 18 bold").grid(row=2, column=3, sticky=W, padx=10, pady=10)
 
 
@@ -51,16 +47,7 @@ class FormativeStats(Frame):
             
             value = test.get(key)
             listbox.insert(END, value)
-
-        # this function is called when the selection in the listbox changes   
-        #def showSelection(*args):
-            #chosenTestList = listbox.curselection()
-            #if len(chosenTestList)==1:
-                #chosenTestID = int(chosenTestList[0])
-                #listbox.see(chosenTestID)
-                #testType = tests[chosenTestID]
-                #statusmsg.set("the test type is: ", testType)
-
+            
         def CurSelect(evt):
             sel((listbox.get(listbox.curselection()))[0])
 

@@ -1,8 +1,8 @@
-
 from tkinter import *
 from tkinter import messagebox
 import os
 global results
+global average
 import csv
 import matplotlib.pyplot as plt
 import numpy as np
@@ -17,6 +17,8 @@ class summativeStats(Frame):
 		self.homeButton()
 		self.dropdownMenu()
 		self.createGraph()
+		self.createAnotherGraph()
+		#self.cleanData()
 
 	def homeButton(self):
 		#creates a button that allows user to go to the home page
@@ -52,10 +54,13 @@ class summativeStats(Frame):
 		lblDropDown.grid( row=9, column=10 )
 		self.GraphSome=StringVar()
 		Label(root, textvariable=self.GraphSome).grid(row=25,column=25)
+		t = Text(self)
+		t.grid(row=0,column=0)
 		def change_dropdown(*args):
 			#print("Dis")
 			#print(var.get())
-			
+			OnlyOne = False
+			count = 1.0
 			for files in summativeStats.results:
 				self.FileName = str(var.get())
 				with open("Summative/%s " %self.FileName) as f:
@@ -65,9 +70,14 @@ class summativeStats(Frame):
 					reader = csv.reader(f)
 					t = Text(self)
 					t.grid(row=0,column=0)
+						
+					if OnlyOne == False:
+						t.insert(END,"Student ID Score \n")
+						#t.insert(END,"Score")
 					for row in reader:
-						popop = row.insert(7,"\n")         # IMPORTANT change to 2 for student id and test score
-						t.insert(1.0,' '.join(row))
+						row.insert(2,"\n")
+						count += 1.0
+						t.insert(count,' '.join(row))
 			self.GraphSome.set(self.FileName)
 
 		var.trace('w', change_dropdown)
@@ -75,13 +85,13 @@ class summativeStats(Frame):
 
 	def createGraph(self):
 
-<<<<<<< HEAD:Tkinter_Pages/sumstats.py
-		btnCreateGraph = Button(self, text = 'Create a Graph', font = ('MS', 9, 'bold'), command = self.plot_average)
+		btnCreateGraph = Button(self, text = 'View All Scores', font = ('MS', 9, 'bold'), command = self.plot_scores)
 		btnCreateGraph.grid(row=15, column = 15, columnspan = 3)
-=======
-		"""btnCreateGraph = Button(self, text = 'Create a Graph', font = ('MS', 9, 'bold'), command = self.plot_average)
-								btnCreateGraph.grid(row=55, column = 50, columnspan = 3)"""
->>>>>>> 8f3e7136e55e3b7f48f4edfe509be8922526859e:sumstats.py
+
+	def createAnotherGraph(self):
+
+		btnCreateBar = Button(self, text = 'View Average', font = ('MS', 9, 'bold'), command = self.plot_average)
+		btnCreateBar.grid(row=16, column = 15, columnspan = 3)
 
 	def cleanData(self):
 		#var = StringVar(root)
@@ -89,6 +99,7 @@ class summativeStats(Frame):
 
 		#FileName = "Template.csv"#self.GraphSome.get()
 		#print(FileName)
+		global average
 		load =np.loadtxt("Summative/%s" %self.FileName,skiprows=13,dtype=str)
 		total = 0
 		clean = []
@@ -104,19 +115,63 @@ class summativeStats(Frame):
 		average = (total/len(clean))
 		return average
 
-	def plot_average(self, *args):
+	def plot_scores(self, *args):
+		load =np.loadtxt("Summative/%s" %self.FileName,skiprows=13,dtype=str)
+		total = 0
+		clean = []
+		studentId = []
+		testScore = []
+		for e in load:
+			a = e.split(',')
+			clean.append([a[0],a[1]])
+		print(clean)
+
+		for x in clean:
+			ident = (x[0])
+			score = int(x[1])
+			studentId.append(ident)
+			testScore.append(score)
+
 		print (self.FileName)
-		print(self.cleanData)
-		#index = (1,2,3,4,5)
-		#sco = (10,20,30,40,50)
-		plt.bar(index, sco)
-		plt.xlabel('Student Number', fontsize=5)
-		plt.ylabel('Score', fontsize=5)
-		plt.xticks(index, fontsize=5, rotation=30)
+		#index = [1,2,3,4,5]
+		#sco = [10,20,30,40,50]
+		#plt.bar(self.FileName, average)
+		plt.bar(studentId, testScore)
+		plt.xlabel('Student ID', fontsize=10)
+		plt.xticks(rotation=90)
+		plt.ylabel('Score', fontsize=10)
 		plt.show()
 
-						
+	def plot_average(self, *args):
+		load =np.loadtxt("Summative/%s" %self.FileName,skiprows=13,dtype=str)
+		total = 0
+		clean = []
+		studentId = []
+		testScore = []
+		for e in load:
+			a = e.split(',')
+			clean.append([a[0],a[1]])
+		print(clean)
+
+		for i in clean:
+			total += int(i[1])
+		print(total)
+
+		average = (total/len(clean))
+
+		print (self.FileName)
+
+		#plt.bar(self.FileName, average)
+		
+		plt.bar(self.FileName, average)
+		plt.xlabel('Test', fontsize=10)
+
+		plt.ylabel('Average Score', fontsize=10)
+		plt.show()
+			
+				
 root= Tk()
 root.title("Summative Statistic Page")
-root.geometry("1100x500")
+root.geometry("600x400")
 app = summativeStats(root)
+root.mainloop()

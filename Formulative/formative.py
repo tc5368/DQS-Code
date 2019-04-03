@@ -129,6 +129,6 @@ class FormativeTest(Frame):
 def main(filename):
     root = Tk()
     root.title("Formative Test")
-    root.geometry("1200x900")
+    root.geometry("400x700")
     app = FormativeTest(root, filename)
     root.mainloop()

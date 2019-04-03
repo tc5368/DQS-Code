@@ -61,7 +61,7 @@ class Lecturer_Home(Frame):
 def main():
 	global root
 	root = Tk()
-	root.geometry("1500x750")
+	root.geometry("600x400")
 	root.title("Lecturer Home")
 	app = Lecturer_Home(root)
 	root.mainloop()
