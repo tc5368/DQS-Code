@@ -14,7 +14,7 @@ class Questionaire(Frame):
 	Answer_Storage_Temp = []
 	PerQuestionStorage = []
 	temp = []
-	SavingList= []
+	SavingList= [[]]
 	TestType = ["S"]
 
 	def __init__(self, master):
@@ -99,7 +99,7 @@ class Questionaire(Frame):
 		a = self.Answer.get()
 		f = self.Feedback.get()
 		
-		if len(Questionaire.Answer_Storage_Temp) <5:
+		if len(Questionaire.Answer_Storage_Temp) <4:
 			messagebox.showinfo("Error","Answer's For This Question Have Not Been Fully Entered")
 		elif q == "":
 			messagebox.showinfo("Error","The Question Feild Has Not Been Filled Out")
@@ -132,7 +132,7 @@ class Questionaire(Frame):
 
 	def Next_Answer(self):
 		a = self.Answer.get()
-		if len(Questionaire.Answer_Storage_Temp) <=4:
+		if len(Questionaire.Answer_Storage_Temp) <=3:
 			Questionaire.Answer_Storage_Temp.append(a)
 			self.Answer.delete(0,END)
 			print(Questionaire.Answer_Storage_Temp)
