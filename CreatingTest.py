@@ -156,13 +156,13 @@ class Questionaire(Frame):
 			while os.path.exists("TS_%s.csv" % i):
 				i += 1
 
-			fh = open("TS_%s.csv" % i, "w")
-			FileName = "TS_%s.csv" % i
+			fh = open(str(os.getcwd())+'\\Summative\\'+"TS_%s.csv" % i, "w")
+			filename = "TS_%s.csv" % i
 
-			print(FileName)
+			print(filename)
 			Test = Questionaire.SavingList
-			print("Saving")
-			with open("Formulative%s"%FileName,mode="a",newline='') as new_file:
+			print("Saving")#str(os.getcwd())+'\\Formulative\\'+filename
+			with open(str(os.getcwd())+'\\Summative\\'+filename,mode="a",newline='') as new_file:
 				csv_writer = csv.writer(new_file)
 				for i in range(len(Test)):
 					csv_writer.writerow(Test[i])
@@ -171,13 +171,13 @@ class Questionaire(Frame):
 			while os.path.exists("TF_%s.csv" % i):
 				i += 1
 
-			fh = open("TF_%s.csv" % i, "w")
-			FileName = "TF_%s.csv" % i
+			fh = open(str(os.getcwd())+'\\Formulative\\'+"TF_%s.csv" % i, "w")
+			filename = "TF_%s.csv" % i
 
-			print(FileName)
+			print(filename)
 			Test = Questionaire.SavingList
 			print("Saving")
-			with open("Formulative%s"%FileName,mode="a",newline='') as new_file:
+			with open(str(os.getcwd())+'\\Formulative\\'+filename,mode="a",newline='') as new_file:
 				csv_writer = csv.writer(new_file)
 				for i in range(len(Test)):
 					csv_writer.writerow(Test[i])
@@ -190,3 +190,4 @@ def main():
 	root.title("Create Test Page")
 	app = Questionaire(root)
 	root.mainloop()
+

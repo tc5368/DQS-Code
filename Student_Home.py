@@ -70,8 +70,8 @@ class Student_Home(Frame):
         popupMenutwo.grid(row=5, column=7)
 
         def ReturningTestType(*args):
-            test_selected(self.var.get())
-
+            #test_selected(self.var.get())
+            None
         def ReturningTestTypetwo(*args):
             test_selected(self.vartwo.get())
 
