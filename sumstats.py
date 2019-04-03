@@ -47,11 +47,11 @@ class summativeStats(Frame):
 		global results
 
 		popupMenu = OptionMenu(self, var, *summativeStats.results)
-		popupMenu.grid(row=50, column=50)
-		Label(root, text = "Choose a Test to view")
+		popupMenu.grid( row=10, column=10)
+		lblDropDown = Label(self, text = "Choose a Test to view", font = ('MS', 9, 'bold'))
+		lblDropDown.grid( row=9, column=10 )
 		self.GraphSome=StringVar()
 		Label(root, textvariable=self.GraphSome).grid(row=25,column=25)
-		self.GraphSome.set("The Current Test Being Displayed Is: " )
 		def change_dropdown(*args):
 			#print("Dis")
 			#print(var.get())
@@ -75,8 +75,13 @@ class summativeStats(Frame):
 
 	def createGraph(self):
 
+<<<<<<< HEAD:Tkinter_Pages/sumstats.py
+		btnCreateGraph = Button(self, text = 'Create a Graph', font = ('MS', 9, 'bold'), command = self.plot_average)
+		btnCreateGraph.grid(row=15, column = 15, columnspan = 3)
+=======
 		"""btnCreateGraph = Button(self, text = 'Create a Graph', font = ('MS', 9, 'bold'), command = self.plot_average)
 								btnCreateGraph.grid(row=55, column = 50, columnspan = 3)"""
+>>>>>>> 8f3e7136e55e3b7f48f4edfe509be8922526859e:sumstats.py
 
 	def cleanData(self):
 		#var = StringVar(root)
@@ -84,7 +89,7 @@ class summativeStats(Frame):
 
 		#FileName = "Template.csv"#self.GraphSome.get()
 		#print(FileName)
-		load =np.loadtxt("Summative/%s" % self.FileName,skiprows=13,dtype=str)
+		load =np.loadtxt("Summative/%s" %self.FileName,skiprows=13,dtype=str)
 		total = 0
 		clean = []
 		for e in load:
@@ -96,16 +101,19 @@ class summativeStats(Frame):
 			total += int(i[1])
 		print(total)
 
-		self.average = (total/len(clean))
+		average = (total/len(clean))
+		return average
 
-	"""def plot_average():
-		index = [1,2,3,4,5]
-		sco = [10,20,30,40,50]
+	def plot_average(self, *args):
+		print (self.FileName)
+		print(self.cleanData)
+		#index = (1,2,3,4,5)
+		#sco = (10,20,30,40,50)
 		plt.bar(index, sco)
-	    plt.xlabel('Student Number', fontsize=5)
-	    plt.ylabel('Score', fontsize=5)
-	    plt.xticks(index, label, fontsize=5, rotation=30)
-	    plt.show() """
+		plt.xlabel('Student Number', fontsize=5)
+		plt.ylabel('Score', fontsize=5)
+		plt.xticks(index, fontsize=5, rotation=30)
+		plt.show()
 
 						
 root= Tk()
