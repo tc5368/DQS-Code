@@ -4,7 +4,7 @@ import csv
 
 
 
-class Test(Frame):
+class SummativeTest(Frame):
 
     def __init__(self, master):
         Frame.__init__(self, master)
@@ -20,7 +20,7 @@ class Test(Frame):
 
 
     def widget(self):
-        label1 = Label(self, text = "Test")
+        label1 = Label(self, text = "Summative Test")
         label1.grid(columnspan = 2)
         label2 = Label(self, text = "Attempt 1/1")
         label2.grid(row=1, column=11)
@@ -46,18 +46,18 @@ class Test(Frame):
                 
                 self.var[index] = IntVar()
 
-                label = Label(self, text = line[1])
+                label = Label(self, text = line[2])
                 label.grid(row = row_n,column = 0, sticky = W)
                 
                 row_n += 1
                 
-                radiobutton1 = Radiobutton(self, text = line[2], variable = self.var[index], value = 1, command = self.selection)
+                radiobutton1 = Radiobutton(self, text = line[3], variable = self.var[index], value = 1, command = self.selection)
                 radiobutton1.grid(row = row_n,column = 0)
-                radiobutton2 = Radiobutton(self, text = line[3], variable = self.var[index], value = 2, command = self.selection)
+                radiobutton2 = Radiobutton(self, text = line[4], variable = self.var[index], value = 2, command = self.selection)
                 radiobutton2.grid(row = row_n,column = 1)
-                radiobutton3 = Radiobutton(self, text = line[4], variable = self.var[index], value = 3, command = self.selection)
+                radiobutton3 = Radiobutton(self, text = line[5], variable = self.var[index], value = 3, command = self.selection)
                 radiobutton3.grid(row = row_n,column = 2)
-                radiobutton4 = Radiobutton(self, text = line[5], variable = self.var[index], value = 4, command = self.selection)
+                radiobutton4 = Radiobutton(self, text = line[6], variable = self.var[index], value = 4, command = self.selection)
                 radiobutton4.grid(row = row_n,column = 3)
 
                 row_n += 2
@@ -92,7 +92,7 @@ class Test(Frame):
             next(csvread)
             for line in csvread:
                 
-                if int(line[7]) == self.saved_an[index]:
+                if int(line[1]) == self.saved_an[index]:
                     print(line[0]+" is correct")
                     self.mark += 1
                     
@@ -100,7 +100,16 @@ class Test(Frame):
                     print(line[0]+" you didn't answer this question")
                     
                 else:
-                    print(line[0]+" is wrong")
+                    
+                    c = int(line[1])
+                    if c == 1:
+                        print(line[0]+" answer is wrong " + line[3] + " is the right answer")
+                    elif c == 2:
+                        print(line[0]+" answer is wrong " + line[4] + " is the right answer")
+                    elif c == 3:
+                        print(line[0]+" answer is wrong " + line[5] + " is the right answer")
+                    else:
+                        print(line[0]+" answer is wrong " + line[6] + " is the right answer")
                     
                 index +=1
                 
@@ -113,7 +122,7 @@ class Test(Frame):
 
 
 root = Tk()
-root.title("Test")
-root.geometry("1200x900")
-app = Test(root)
+root.title("Summative Test")
+root.geometry("900x700")
+app = SummativeTest(root)
 root.mainloop()

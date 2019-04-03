@@ -1,23 +1,24 @@
-
+global root
 from tkinter import *
 import tkinter as tk 
-import csv
+import csv, os, Lecturer_Home
 from tkinter import messagebox
-import os
+
+def home():
+	global root
+	root.destroy()
+	Lecturer_Home.main()
 
 class Questionaire(Frame):
-
-	#Test=["Question","CorrectAns","incorrect","incorrect","incorrect","incorrect","Feedback"]
 	pop = []
 	Answer_Storage_Temp = []
 	PerQuestionStorage = []
 	temp = []
-	SavingList= []
+	SavingList= [[]]
 	TestType = ["S"]
 
 	def __init__(self, master):
 		Frame.__init__(self, master)
-		#self.master = master
 		self.grid()
 		self.Building()
 
@@ -42,23 +43,20 @@ class Questionaire(Frame):
 		button3 = Button(self, text="Saving", command =self.Saving )
 		button3.grid(row=42, column = 40,columnspan=10)
 
-		button3 = Button(self, text="Home", command =self.home )
+		button3 = Button(self, text="Home", command = home)
 		button3.grid(row=43, column = 40,columnspan=10)  
 
 		question_number_label= StringVar()
 		Label(self, textvariable=question_number_label).grid(row=0,column=0,columnspan=1)
 		question_number_label.set("Question Number 1")
 		Label(self,text ="Answer").grid(row=1,column=0,columnspan=1)
-		
 		Label(self,text ="Feedback").grid(row=2,column=0,columnspan=1)
-
 		Label(self,text ="The First Answer Inputed Needs To Be The Correct Answer").grid(row=3,column=0,columnspan=1)
 		
 		
 		i = 0
 		while os.path.exists(str(os.getcwd())+'\\Summative\\'+"TS_%s.csv" % i):
 			i += 1
-	   
 
 		self.Test_ID= StringVar()
 		Label(self,textvariable=self.Test_ID).grid(row=6,column=50)
@@ -74,8 +72,6 @@ class Questionaire(Frame):
 		radiobutton2 = Radiobutton(self, text = "Formative", value = "F", command = self.Form)
 		radiobutton2.grid(row = 65,column = 1)
 		
-	def home():
-		print("")
 
 	def Sum(self):
 		Questionaire.TestType[:]
@@ -103,8 +99,7 @@ class Questionaire(Frame):
 		a = self.Answer.get()
 		f = self.Feedback.get()
 		
-		
-		if len(Questionaire.Answer_Storage_Temp) <5:
+		if len(Questionaire.Answer_Storage_Temp) <4:
 			messagebox.showinfo("Error","Answer's For This Question Have Not Been Fully Entered")
 		elif q == "":
 			messagebox.showinfo("Error","The Question Feild Has Not Been Filled Out")
@@ -136,12 +131,8 @@ class Questionaire(Frame):
 			
 
 	def Next_Answer(self):
-		#t = Questionaire.Test_ID.get()
-		#print(t)
-		
-
 		a = self.Answer.get()
-		if len(Questionaire.Answer_Storage_Temp) <=4:
+		if len(Questionaire.Answer_Storage_Temp) <=3:
 			Questionaire.Answer_Storage_Temp.append(a)
 			self.Answer.delete(0,END)
 			print(Questionaire.Answer_Storage_Temp)
@@ -161,7 +152,7 @@ class Questionaire(Frame):
 
 			print(filename)
 			Test = Questionaire.SavingList
-			print("Saving")#str(os.getcwd())+'\\Formulative\\'+filename
+			print("Saving")
 			with open(str(os.getcwd())+'\\Summative\\'+filename,mode="a",newline='') as new_file:
 				csv_writer = csv.writer(new_file)
 				for i in range(len(Test)):
@@ -185,6 +176,7 @@ class Questionaire(Frame):
 			messagebox.showinfo("Error","Please Select A Test Type")
 
 def main():
+	global root
 	root = Tk()
 	root.geometry("800x400")
 	root.title("Create Test Page")
