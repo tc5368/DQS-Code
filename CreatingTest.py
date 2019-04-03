@@ -56,7 +56,7 @@ class Questionaire(Frame):
 		
 		
 		i = 0
-		while os.path.exists("Summative/TS_%s.csv" % i):
+		while os.path.exists(str(os.getcwd())+'\\Summative\\'+"TS_%s.csv" % i):
 			i += 1
 	   
 
