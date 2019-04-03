@@ -179,7 +179,7 @@ class Questionaire(Frame):
 def main():
 	global root
 	root = Tk()
-	root.geometry("600x400")
+	root.geometry("400x600")
 	root.title("Create Test Page")
 	app = Questionaire(root)
 	root.mainloop()
