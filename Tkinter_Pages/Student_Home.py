@@ -59,7 +59,7 @@ class Student_Home(Frame):
     def openTests(self):
         var = StringVar(root)
         
-        popupMenu = OptionMenu(self, var, *Student_Home.FormativeResults)
+        popupMenu = OptionMenu(self, var, *Student_Home.FormativeResults,)
         popupMenu.grid(row=5, column=7)
         vartwo=StringVar(root)
         popupMenutwo = OptionMenu(self, vartwo, *Student_Home.FormativeResults)
