@@ -5,12 +5,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 global root
 from collections import Counter
-
-import formative_stat_selection
+import Lecturer_Home
+from Formulative import formative_stat_selection
 
 def home():
     global root
     root.destroy()
+    Lecturer_Home.main()
 
 
 class FormativeStats(Frame):
@@ -133,6 +134,3 @@ def main():
     app = FormativeStats(root,test)
 
     root.mainloop()
-    print('Going Home')
-
-main()

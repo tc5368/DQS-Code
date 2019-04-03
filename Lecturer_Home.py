@@ -2,11 +2,18 @@ global root
 from tkinter import *
 
 import CreatingTest
+from Formulative import formative_stat_present
 
 def open_create_test_page():
 	global root
 	root.destroy()
 	CreatingTest.main()
+
+def open_statistics_page():
+	global root
+	root.destroy()
+	formative_stat_present.main()
+
 
 class Lecturer_Home(Frame):
 	def __init__(self,master):
@@ -22,6 +29,9 @@ class Lecturer_Home(Frame):
 	def create_Buttons(self):
 		Create_Test = Button(self, text='Create Test',command=open_create_test_page)
 		Create_Test.grid(row=2,column=17)
+		Create_Test = Button(self, text='View Results',command=open_statistics_page)
+		Create_Test.grid(row=3,column=17)
+
 
 	def create_labels(self):
 		Title= StringVar()
@@ -57,4 +67,3 @@ def main():
 	root.title("Lecturer Home")
 	app = Lecturer_Home(root)
 	root.mainloop()
-	return valueG	

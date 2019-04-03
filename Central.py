@@ -22,4 +22,3 @@ if user_info[3] == 'S':
 	formative.main(test)
 else:
 	Lecturer_Home.main()
-

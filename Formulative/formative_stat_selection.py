@@ -1,10 +1,16 @@
 from tkinter import *
 global root,sel
+import Lecturer_Home
 
 def sel(value):
     global root, sel
     sel = value
     root.destroy()
+
+def home():
+    global root
+    root.destroy()
+    Lecturer_Home.main()
 
 class FormativeStats(Frame):
     # GUI Setup
@@ -33,7 +39,7 @@ class FormativeStats(Frame):
         #e1.grid(row=1, column=1)
 
         Button(self, text='Search Test', fg = "black", bg= "white", font = "Helvetica 18 bold").grid(row=1, column=3, sticky=W, padx=10, pady=10)
-        Button(self, text='Home', fg = "black", bg= "white", font = "Helvetica 18 bold").grid(row=2, column=3, sticky=W, padx=10, pady=10)
+        Button(self, text='Home',command=home, fg = "black", bg= "white", font = "Helvetica 18 bold").grid(row=2, column=3, sticky=W, padx=10, pady=10)
 
 
     def testList(self):
