@@ -24,53 +24,44 @@ class Questionaire(Frame):
 
 	def Building(self):
 		TestTypeD = ["S"]
-		
-		self.Question = Entry()
-		self.Question.grid(row=0,column=1,columnspan=4)
-
-		self.Answer = Entry()
-		self.Answer.grid(row=1,column=1,columnspan=4)
-
-		self.Feedback = Entry()
-		self.Feedback.grid(row=2,column=1,columnspan=4)
-
-		button1 = Button(self, text="Next Answer", command =self.Next_Answer )
-		button1.grid(row=40, column = 40,columnspan=10)
-
-		button2 = Button(self, text= "Next Question", command =self.Next_Question)
-		button2.grid(row=41,column = 40,columnspan=10)
-
-		button3 = Button(self, text="Saving", command =self.Saving )
-		button3.grid(row=42, column = 40,columnspan=10)
-
-		button3 = Button(self, text="Home", command = home)
-		button3.grid(row=43, column = 40,columnspan=10)  
-
 		self.question_number_label= StringVar()
-		Label(self, textvariable=self.question_number_label).grid(row=0,column=0,columnspan=1)
+		Label(self, textvariable=self.question_number_label).grid(sticky=W,padx=5)
 		self.question_number_label.set("Question Number " +str(len(Questionaire.SavingList)))
-		Label(self,text ="Answer").grid(row=1,column=0,columnspan=1)
-		Label(self,text ="Feedback").grid(row=2,column=0,columnspan=1)
-		Label(self,text ="The First Answer Inputed Needs To Be The Correct Answer").grid(row=3,column=0,columnspan=1)
-		
+
+		Label(self,text ="Answer").grid(sticky=W,padx=5)
+		Label(self,text ="Feedback").grid(sticky=W,padx=5)
+		Label(self,text ="The First Answer Inputed Needs To Be The Correct Answer").grid(sticky=W,padx=5)
+
+		self.Question = Entry().grid(sticky=NW,row=0,column=0,padx=160,pady=5)
+
+		self.Answer = Entry().grid(sticky=NW,row=0,column=0,padx=160,pady=35)
+
+		self.Feedback = Entry().grid(sticky=NW,row=0,column=0,padx=160,pady=60)
+
+		button1 = Button(self, text="Next Answer", command =self.Next_Answer ).grid(sticky=E,row=0,column=3)
+
+		button2 = Button(self, text= "Next Question", command =self.Next_Question).grid(sticky=E,row=1,column=3)
+
+		button3 = Button(self, text="Save", command =self.Saving ).grid(sticky=E,row=2,column=3)
+
+
+		button4 = Button(self, text="Home", command = home).grid(sticky=E,row=3,column=3)
 		
 		i = 0
 		while os.path.exists(str(os.getcwd())+'\\Summative\\'+"TS_%s.csv" % i):
 			i += 1
 
 		self.Test_ID= StringVar()
-		Label(self,textvariable=self.Test_ID).grid(row=6,column=50)
+		Label(self,textvariable=self.Test_ID).grid(sticky=NE,row=0,column=4)
 		self.Test_ID.set("Test ID:"+str(i))
 
 		lecturer= StringVar()
-		Label(self,textvariable=lecturer).grid(row=7,column=50)
+		Label(self,textvariable=lecturer).grid(sticky=NE,row=1,column=4)
 		lecturer.set("Lecturer Username:"+str(3))
 
-		radiobutton1 = Radiobutton(self, text = "Summative", value = "S", command = self.Sum)
-		radiobutton1.grid(row = 65,column = 0)
+		radiobutton1 = Radiobutton(self, text = "Summative", value = "S", command = self.Sum).grid(sticky=SW)
 
-		radiobutton2 = Radiobutton(self, text = "Formative", value = "F", command = self.Form)
-		radiobutton2.grid(row = 65,column = 1)
+		radiobutton2 = Radiobutton(self, text = "Formative", value = "F", command = self.Form).grid(sticky=SW)
 		
 
 	def Sum(self):
@@ -179,8 +170,9 @@ class Questionaire(Frame):
 def main():
 	global root
 	root = Tk()
-	root.geometry("400x600")
+	root.geometry("600x400")
 	root.title("Create Test Page")
 	app = Questionaire(root)
 	root.mainloop()
 
+main()
