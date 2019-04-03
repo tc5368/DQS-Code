@@ -41,7 +41,7 @@ class Student_Home(Frame):
     def create_Buttons(self):
         Template_test = Button(self, text='Take Example Test',command=take_example_test)
         Template_test.grid(row=1,column=11)
-        Select_test = Button(self, text='Submit',command=lambda:test_selected('THE SELECTED TEST'))
+        Select_test = Button(self, text='Submit',command=lambda:test_selected())
         Select_test.grid(row=1,column=12)
 
     def create_labels(self):
@@ -58,16 +58,26 @@ class Student_Home(Frame):
         Formative_Tests.set("Formative_Tests Tests To Take")
 
     def selectTest(self):
-        var = StringVar(root)
+        self.var = StringVar(root)
         #global SummativeResults
-        popupMenu = OptionMenu(self, var, *Student_Home.SummativeResults)
-        popupMenu.grid(row=5, column=7)
-
-        var = StringVar(root)
-        #global SummativeResults
-        popupMenu = OptionMenu(self, var, *Student_Home.FormativeResults)
+        popupMenu = OptionMenu(self, self.var, *Student_Home.SummativeResults)
         popupMenu.grid(row=5, column=6)
 
+        print(self.var.get())
+        self.vartwo = StringVar(root)
+        #global SummativeResults
+        popupMenutwo = OptionMenu(self, self.vartwo, *Student_Home.FormativeResults)
+        popupMenutwo.grid(row=5, column=7)
+
+        def ReturningTestType(*args):
+            test_selected(self.var.get())
+
+        def ReturningTestTypetwo(*args):
+            test_selected(self.vartwo.get())
+
+        self.var.trace('w', ReturningTestType)
+        self.vartwo.trace('w', ReturningTestTypetwo)
+        
         
         
 

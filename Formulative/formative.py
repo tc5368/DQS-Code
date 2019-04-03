@@ -10,7 +10,7 @@ class FormativeTest(Frame):
         self.grid()
         self.attempt = 1
         self.widget()
-        self.filename = (str(os.getcwd())+'\\Formulative\\'+filename+'.csv')
+        self.filename = (str(os.getcwd())+'\\Formulative\\'+filename)
         print(filename)
         self.var = {}
         self.select = []
