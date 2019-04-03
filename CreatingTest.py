@@ -105,7 +105,7 @@ class Questionaire(Frame):
 			messagebox.showinfo("Error","The Question Feild Has Not Been Filled Out")
 		elif f == "":
 			messagebox.showinfo("Error","The Feedback Section Has Not Been Filled Out")
-		elif len(Questionaire.SavingList) == 10:
+		elif len(Questionaire.SavingList) == 11:
 			messagebox.showinfo("Error","10 Questions Have Already Been Entered In This Test")
 		else:
 			Questionaire.PerQuestionStorage.append(q)

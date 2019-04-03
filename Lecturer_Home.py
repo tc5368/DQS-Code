@@ -14,7 +14,6 @@ def open_statistics_page():
 	root.destroy()
 	formative_stat_present.main()
 
-
 class Lecturer_Home(Frame):
 	def __init__(self,master):
 		Frame.__init__(self,master)
@@ -31,7 +30,6 @@ class Lecturer_Home(Frame):
 		Create_Test.grid(row=2,column=17)
 		Create_Test = Button(self, text='View Results',command=open_statistics_page)
 		Create_Test.grid(row=3,column=17)
-
 
 	def create_labels(self):
 		Title= StringVar()
