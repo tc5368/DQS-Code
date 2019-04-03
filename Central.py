@@ -1,6 +1,6 @@
 from User_Info import login as lg
-from Tkinter_Pages import Student_Home
-from Tkinter_Pages import Lecturer_Home
+import Student_Home
+import Lecturer_Home
 from Formulative import formative
 
 print('Logging in now')
