@@ -74,10 +74,10 @@ class summativeStats(Frame):
 
 	def createGraph(self):
 
-		btnCreateGraph = Button(self, text = 'Create a Graph', font = ('MS', 9, 'bold'), command = self.actualGraph)
+		btnCreateGraph = Button(self, text = 'Create a Graph', font = ('MS', 9, 'bold'), command = self.plot_average)
 		btnCreateGraph.grid(row=55, column = 50, columnspan = 3)
 
-	def actualGraph(self):
+	def cleanData(self):
 		#var = StringVar(root)
 		#for files in summativeStats.results:
 
@@ -85,7 +85,6 @@ class summativeStats(Frame):
 		#print(FileName)
 		load =np.loadtxt("Summative/%s" % self.FileName,skiprows=13,dtype=str)
 		total = 0
-		rowscounted = 0
 		clean = []
 		for e in load:
 			a = e.split(',')
@@ -96,7 +95,16 @@ class summativeStats(Frame):
 			total += int(i[1])
 		print(total)
 
-		print(total/len(clean))		
+		self.average = (total/len(clean))
+
+	"""def plot_average():
+		index = [1,2,3,4,5]
+		sco = [10,20,30,40,50]
+		plt.bar(index, sco)
+	    plt.xlabel('Student Number', fontsize=5)
+	    plt.ylabel('Score', fontsize=5)
+	    plt.xticks(index, label, fontsize=5, rotation=30)
+	    plt.show() """
 
 						
 root= Tk()
