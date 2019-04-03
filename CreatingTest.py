@@ -46,9 +46,9 @@ class Questionaire(Frame):
 		button3 = Button(self, text="Home", command = home)
 		button3.grid(row=43, column = 40,columnspan=10)  
 
-		question_number_label= StringVar()
-		Label(self, textvariable=question_number_label).grid(row=0,column=0,columnspan=1)
-		question_number_label.set("Question Number 1")
+		self.question_number_label= StringVar()
+		Label(self, textvariable=self.question_number_label).grid(row=0,column=0,columnspan=1)
+		self.question_number_label.set("Question Number " +str(len(Questionaire.SavingList)))
 		Label(self,text ="Answer").grid(row=1,column=0,columnspan=1)
 		Label(self,text ="Feedback").grid(row=2,column=0,columnspan=1)
 		Label(self,text ="The First Answer Inputed Needs To Be The Correct Answer").grid(row=3,column=0,columnspan=1)
@@ -123,7 +123,8 @@ class Questionaire(Frame):
 			new_list = Questionaire.PerQuestionStorage.copy()
 			del Questionaire.PerQuestionStorage[:]
 			Questionaire.SavingList.append(new_list)
-			
+			self.question_number_label.set("Question Number " +str(len(Questionaire.SavingList)))
+
 			print("PerQuestionStorage")
 			print(Questionaire.PerQuestionStorage)
 			print("SavingList")
