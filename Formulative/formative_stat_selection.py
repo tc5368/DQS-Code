@@ -41,11 +41,11 @@ class FormativeStats(Frame):
     def testList(self):
         listbox = Listbox(self)
         listbox.grid(row=2, column=1)
-        
-        test = {1:["Template", ":Computing"], 2:["TF_0", ":History"]}
-        for key in test:
+        #str(os.getcwd())+'\\Formulative\\'
+        test = ['TF_0.csv']#[{1:["Template", ":Computing"], 2:["TF_0", ":History"]}]
+        for key in range(len(test)):
             
-            value = test.get(key)
+            value = test[key]#test.get(key)
             listbox.insert(END, value)
             
         def CurSelect(evt):
