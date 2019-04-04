@@ -4,6 +4,17 @@ import Lecturer_Home
 import sumstats
 from Formulative import formative
 from Summative import Summative as summative
+import os, csv
+
+
+
+def add_sum_test_entry(score,user,filename):
+	print(filename)
+	with open(str(os.getcwd())+'\\Summative\\'+filename,mode="a",newline='') as new_file:
+		csv_writer = csv.writer(new_file)
+		csv_writer.writerow([user,score])
+
+
 
 print('Logging in now')
 user_id = lg.main()
@@ -26,6 +37,15 @@ if user_info[3] == 'S':
 		print('%s scored: %s on test %s answering questions: %s correctly.' %(user_info[0],score,test,correctly_answerd))
 	else:
 		score = summative.main(test)
+		add_sum_test_entry(score,user_info[0],test)
 		print('%s scored: %s on test %s.' %(user_info[0],score,test))
 else:
 	Lecturer_Home.main(user_info)
+
+
+
+
+
+
+
+
