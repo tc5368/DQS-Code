@@ -84,35 +84,36 @@ class FormativeTest(Frame):
 		self.destroy()
 
 	def checkAnswers(self):
+		print('Checking Answers')
 		index = 0
+		correct = []
 		with open(self.filename) as csvfile:
 			csvread = csv.reader(csvfile)
 			next(csvread)
 			question = 0
 			for line in csvread:
+				correct.append([])
 				print(line,self.answers[question])
-				question += 1
-				if self.saved_an == []:
+				if self.answers[question] == []:
 					print("")
 
-				elif self.saved_an[index] == 0:
-					print(line[0]+" you didn't answer this question")
-
+				elif self.answers[question] == '':
+					print(line[0]+", you didn't answer this question")
 					
-				elif int(line[7]) == self.saved_an[index]:
-					print(line[0]+" is correct")
+				elif line[1] == self.answers[question]:
+					print(line[0]+", is correct")
 					self.mark += 1
+					correct.append(question)
 					
 				else:
-					print(line[0]+" is wrong")
+					print(line[0]+", is wrong")
+				question += 1
 					
-				index +=1
 
 	def submit(self):
 		answers = []
 		for i in self.var:
 			answers.append(self.var[i].get())
-		#print('You gave answers: ',answers)
 		self.answers = answers
 
 		if self.attempt == 1 or self.attempt == 2:
