@@ -1,6 +1,7 @@
 from User_Info import login as lg
 import Student_Home
 import Lecturer_Home
+import sumstats
 from Formulative import formative
 
 
@@ -23,4 +24,4 @@ if user_info[3] == 'S':
 	print(test)
 	formative.main(test)
 else:
-	Lecturer_Home.main()
+	Lecturer_Home.main(user_info)

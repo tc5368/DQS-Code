@@ -10,8 +10,9 @@ import numpy as np
 class summativeStats(Frame):
 #IMPORTANT COMMENT LINE 62
 	results = []
-	def __init__(self,master):
+	def __init__(self,master,user):
 		Frame.__init__(self, master)
+		self.user_info = user
 		self.grid()
 		self.selectTest()
 		self.homeButton()
@@ -169,9 +170,12 @@ class summativeStats(Frame):
 		plt.ylabel('Average Score', fontsize=10)
 		plt.show()
 			
-				
-root= Tk()
-root.title("Summative Statistic Page")
-root.geometry("600x400")
-app = summativeStats(root)
-root.mainloop()
+def main(user_info):
+	global root
+	print("inMain")				
+	root= Tk()
+	root.title("Summative Statistic Page")
+	root.geometry("600x400")
+	app = summativeStats(root,user_info)
+	root.mainloop()
+
