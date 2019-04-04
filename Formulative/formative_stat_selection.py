@@ -77,3 +77,4 @@ def main():
     root.mainloop()
     return sel
 
+main()
