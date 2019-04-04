@@ -7,16 +7,17 @@ import CreatingTest
 
 def open_create_test_page(u_id):
 	global root
-<<<<<<< HEAD
+
 	print("open_create_test_page")
 	print(u_id)
-	sumstats.main(u_id)
-	root.destroy()
-	
-=======
 	root.destroy()
 	CreatingTest.main(u_id)
->>>>>>> 00575127e1a9a7132bafd524478b5973793e1f5a
+	
+	
+
+	root.destroy()
+	CreatingTest.main(u_id)
+
 
 def open_statistics_page():
 	global root
