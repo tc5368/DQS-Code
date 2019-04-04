@@ -11,6 +11,7 @@ class FormativeTest(Frame):
 		Frame.__init__(self, master)
 		self.grid()
 		self.attempt = 1
+		self.attempt_label()
 		self.widget()
 		self.filename = (str(os.getcwd())+'\\Formulative\\'+filename)
 		self.var = {}
@@ -22,8 +23,6 @@ class FormativeTest(Frame):
 	def widget(self):
 		label1 = Label(self, text = "Formative Test")
 		label1.grid(columnspan = 2)
-		
-		self.attempt_label()
 			
 		label3 = Label(self, text = "Test ID\n Lecturer\n Module\n Due Date")
 		label3.grid(row=2, column=11)
@@ -83,10 +82,11 @@ class FormativeTest(Frame):
 		print(self.saved_an)
 		self.destroy()
 
-	def checkAnswers(self):
+	def checkAnswers(self,final):
 		print('Checking Answers')
 		index = 0
 		correct = []
+		Feedback = ''
 		with open(self.filename) as csvfile:
 			csvread = csv.reader(csvfile)
 			next(csvread)
@@ -105,12 +105,19 @@ class FormativeTest(Frame):
 					
 				else:
 					print(line[0]+", is wrong")
+					print(self.attempt)
+					if final:
+						Feedback += line[-1]+', Correct answer: '+line[1]+'\n'
+					else:
+						Feedback += line[-1]+'\n'
 				question += 1
+			messagebox.showinfo('Feedback: ',Feedback)
 		return correct
 					
 
 	def submit(self):
 		global mark, correctly_answerd
+		self.attempt_label()
 		answers = []
 		for i in self.var:
 			answers.append(self.var[i].get())
@@ -118,11 +125,12 @@ class FormativeTest(Frame):
 
 		if self.attempt == 1 or self.attempt == 2:
 			self.attempt += 1
-			a = self.checkAnswers()
+			self.attempt_label()
+			a = self.checkAnswers(False)
 			
 		elif self.attempt == 3:
 			self.mark = 0
-			a = self.checkAnswers()
+			a = self.checkAnswers(True)
 			
 			print("Mark: " + str(self.mark))
 			mark = self.mark
