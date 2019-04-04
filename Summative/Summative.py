@@ -4,6 +4,7 @@ import csv
 import os
 import random
 global root, mark
+from tkinter import messagebox
 
 class SummativeTest(Frame):
 
@@ -28,10 +29,8 @@ class SummativeTest(Frame):
 		label3 = Label(self, text = "Test ID\n Lecturer\n Module\n Due Date")
 		label3.grid(row=2, column=11)
 
-		button1 = Button(self, text="Save and Exit", command = self.save_exit)
-		button1.grid(row=4, column = 11)
 		button2 = Button(self, text= "Submit", command = self.submit)
-		button2.grid(row=5,column = 11)
+		button2.grid(row=4,column = 11)
 
 
 	def attempt_label(self):
@@ -124,6 +123,7 @@ class SummativeTest(Frame):
 
 def exit():
 	global root
+	messagebox.showinfo("Score:","Well Done You Scored: %s/10" %mark)
 	root.destroy()
 
 def main(filename):

@@ -1,11 +1,17 @@
-Q,correctA,question, answer1, answer2, answer3, answer4,feedback
-Q1,2,Q1. What is the centre most layer of Earth?,Inner core,Mantle,Troposphere,Outer core,
-Q2,4,Q2. The composition of the core of the Earth is thought to be__, Solid iron-nickel alloy, Granite, Peridotite,Basalt,
-Q3,4,Q3. What are the layers of the earth in order from the inside to the outside?,"Inner core, outer core, mantle, crust","Crust, mantle, outer core, inner core","Outer core, mantle, crust, inner core","Mantle, crust, outer core, inner core",
-Q4,3,Q4. Which of the following does not make up soil?,Magma,Decayed plants and animals,Minerals,Rocks,
-Q5,1,Q5. Which is not a layer of the earth?,Magma,Mantle,Crust,Core,
-Q6,3,Q6. Which item is the best model of the layers of the earth?,Peach,Marble,Lemon,Tennis ball,
-Q7,2,Q7. What do we call the process of rocks changing from one form to another?,The rock cycle,Mineral identification,Luster,The Mohs' Scale,
-Q8,3,Q8. Which of the following is not a property of minerals?,Weathering,Streak,Hardness,Luster,
-Q9,1,Q9. Which of the following is a property of minerals?,Hardness,Igneous,Diamond,Sediments,
-Q10,4,Q10. In which layer of the earth are minerals found?,Crust,Outer core,Mantle,Inner Core,
+ , , , , , 
+Q1. What is the centre most layer of Earth?,Inner core,Mantle,Troposphere,Outer core,LectureJ
+Q2. The composition of the core of the Earth is thought to be__, Solid iron-nickel alloy, Granite, Peridotite,Basalt,LectureI
+Q3. What are the layers of the earth in order from the inside to the outside?,"Inner core, outer core, mantle, crust","Crust, mantle, outer core, inner core","Outer core, mantle, crust, inner core","Mantle, crust, outer core, inner core",LectureH
+Q4. Which of the following does not make up soil?,Magma,Decayed plants and animals,Minerals,Rocks,LectureG
+Q5. Which is not a layer of the earth?,Magma,Mantle,Crust,Core,LectureF
+Q6. Which item is the best model of the layers of the earth?,Peach,Marble,Lemon,Tennis ball,LectureE
+Q7. What do we call the process of rocks changing from one form to another?,The rock cycle,Mineral identification,Luster,The Mohs' Scale,LectureD
+Q8. Which of the following is not a property of minerals?,Weathering,Streak,Hardness,Luster,LectureC
+Q9. Which of the following is a property of minerals?,Hardness,Igneous,Diamond,Sediments,LectureB
+Q10. In which layer of the earth are minerals found?,Crust,Outer core,Mantle,Inner Core,LectureA
+a,2,,,,
+a,0,,,,
+a,5
+a,5
+a,4
+a,0
