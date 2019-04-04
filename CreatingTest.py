@@ -34,12 +34,13 @@ class Questionaire(Frame):
 		Label(self,text ="Feedback").grid(sticky=W,padx=5)
 		Label(self,text ="The First Answer Inputed Needs To Be The Correct Answer").grid(sticky=W,padx=5)
 
-		self.Question = Entry().grid(sticky=NW,row=0,column=0,padx=160,pady=5)
-
-		self.Answer = Entry().grid(sticky=NW,row=0,column=0,padx=160,pady=35)
-
-		self.Feedback = Entry().grid(sticky=NW,row=0,column=0,padx=160,pady=60)
-
+		self.Question = Entry()
+		self.Question.grid(sticky=NW,row=0,column=0,padx=160,pady=5)
+		self.Answer = Entry()
+		self.Answer.grid(sticky=NW,row=0,column=0,padx=160,pady=35)
+		self.Feedback = Entry()
+		self.Feedback.grid(sticky=NW,row=0,column=0,padx=160,pady=60)
+		
 		button1 = Button(self, text="Next Answer", command =self.Next_Answer ).grid(sticky=E,row=0,column=3)
 
 		button2 = Button(self, text= "Next Question", command =self.Next_Question).grid(sticky=E,row=1,column=3)
