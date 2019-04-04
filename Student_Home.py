@@ -1,6 +1,6 @@
 from tkinter import *
 global test_id, root
-import os
+import os, csv
 
 def test_selected(test_name):
     global root, test_id
@@ -12,14 +12,15 @@ class Student_Home(Frame):
     SummativeResults=[]
     FormativeResults=[]
 
-    def __init__(self,master):
+    def __init__(self,master,user_id):
         Frame.__init__(self,master)
+        self.u = user_id
         self.grid()
         self.create_Buttons()
         self.create_labels()
         self.openTests()
         self.selectTest()
-        
+
 
     def openTests(self):
         
@@ -47,13 +48,33 @@ class Student_Home(Frame):
 
     def selectTest(self):
         self.var = StringVar(root)
-        popupMenu = OptionMenu(self, self.var, *Student_Home.SummativeResults)
-        popupMenu.grid(row=5, column=6)
+        for i in Student_Home.SummativeResults:
+            dontshow = []
+            with open((str(os.getcwd())+'\\Summative\\'+i)) as csvfile:
+                csvread = csv.reader(csvfile)
+                for line in csvread:
+                    if line == []:
+                        continue
+                    else:
+                        dontshow.append(line[0])
+            if self.u not in dontshow :               
+                popupMenu = OptionMenu(self, self.var, *Student_Home.SummativeResults)
+                popupMenu.grid(row=5, column=6)
 
         print(self.var.get())
         self.vartwo = StringVar(root)
-        popupMenutwo = OptionMenu(self, self.vartwo, *Student_Home.FormativeResults)
-        popupMenutwo.grid(row=5, column=7)
+        for i in Student_Home.FormativeResults:
+            dontshow = []
+            with open((str(os.getcwd())+'\\Formulative\\'+i)) as csvfile:
+                csvread = csv.reader(csvfile)
+                for line in csvread:
+                    if line == []:
+                        continue
+                    else:
+                        dontshow.append(line[0])
+            if self.u not in dontshow :          
+                popupMenutwo = OptionMenu(self, self.vartwo, *Student_Home.FormativeResults)
+                popupMenutwo.grid(row=5, column=7)
 
         def ReturningTestType(*args):
             test_selected(self.var.get())
@@ -67,11 +88,11 @@ class Student_Home(Frame):
         
         
 
-def main():
+def main(user_id):
     global root
     root = Tk()
     root.geometry("800x600")
     root.title("Student Home")
-    app = Student_Home(root)
+    app = Student_Home(root,user_id)
     root.mainloop()
     return test_id

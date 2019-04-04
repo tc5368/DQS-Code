@@ -14,8 +14,6 @@ def add_sum_test_entry(score,user,filename):
 		csv_writer = csv.writer(new_file)
 		csv_writer.writerow([user,score])
 
-
-
 print('Logging in now')
 user_id = lg.main()
 print('Sucsessfully logged in %s' %user_id)
@@ -30,7 +28,7 @@ print('Succsesfully found info: ',user_info)
 
 print('Finding the right window')
 if user_info[3] == 'S':
-	test = Student_Home.main()
+	test = Student_Home.main(user_info[0])
 	print(test)
 	if test[1] == 'F':
 		score, correctly_answerd = formative.main(test)
