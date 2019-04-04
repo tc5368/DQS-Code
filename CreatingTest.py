@@ -17,10 +17,12 @@ class Questionaire(Frame):
 	SavingList= [[]]
 	TestType = ["S"]
 
-	def __init__(self, master):
+	def __init__(self, master,u_id):
 		Frame.__init__(self, master)
+		self.user_id = u_id
 		self.grid()
 		self.Building()
+		
 
 	def Building(self):
 		TestTypeD = ["S"]
@@ -57,7 +59,8 @@ class Questionaire(Frame):
 
 		lecturer= StringVar()
 		Label(self,textvariable=lecturer).grid(sticky=NE,row=1,column=4)
-		lecturer.set("Lecturer Username:"+str(3))
+		lecturer.set("Lecturer Username:"+str(self.user_id[0]))
+		
 
 		radiobutton1 = Radiobutton(self, text = "Summative", value = "S", command = self.Sum).grid(sticky=SW)
 
@@ -167,10 +170,10 @@ class Questionaire(Frame):
 		else:
 			messagebox.showinfo("Error","Please Select A Test Type")
 
-def main():
+def main(u_id):
 	global root
 	root = Tk()
 	root.geometry("600x400")
 	root.title("Create Test Page")
-	app = Questionaire(root)
+	app = Questionaire(root,u_id)
 	root.mainloop()
