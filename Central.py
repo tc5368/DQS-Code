@@ -23,9 +23,9 @@ if user_info[3] == 'S':
 	print(test)
 	if test[1] == 'F':
 		score, correctly_answerd = formative.main(test)
-		print('Scored: %s on test %s answering questions: %s correctly.' %(score,test,correctly_answerd))
+		print('%s scored: %s on test %s answering questions: %s correctly.' %(user_info[0],score,test,correctly_answerd))
 	else:
 		score = summative.main(test)
-		print('Scored: %s on test %s.' %(score,test))
+		print('%s scored: %s on test %s.' %(user_info[0],score,test))
 else:
 	Lecturer_Home.main(user_info)

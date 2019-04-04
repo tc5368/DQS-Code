@@ -54,6 +54,8 @@ class SummativeTest(Frame):
 			csvread = csv.reader(csvfile)
 			next(csvread)
 			for line in csvread:
+				if index == 13:
+					break
 				self.var[index] = StringVar()
 
 				label = Label(self, text = line[0])
