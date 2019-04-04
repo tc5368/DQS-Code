@@ -54,7 +54,7 @@ class SummativeTest(Frame):
 			csvread = csv.reader(csvfile)
 			next(csvread)
 			for line in csvread:
-				if index == 13:
+				if index == 10:
 					break
 				self.var[index] = StringVar()
 
@@ -87,13 +87,14 @@ class SummativeTest(Frame):
 
 	def checkAnswers(self):
 		print('Checking Answers')
-		index = 0
-		correct = []
 		with open(self.filename) as csvfile:
 			csvread = csv.reader(csvfile)
 			next(csvread)
 			question = 0
 			for line in csvread:
+				print(line)
+				if question == 10:
+					return None
 				if self.answers[question] == []:
 					print("")
 
@@ -103,12 +104,10 @@ class SummativeTest(Frame):
 				elif line[1] == self.answers[question]:
 					print(line[0]+", is correct")
 					self.mark += 1
-					correct.append(question)
 					
 				else:
 					print(line[0]+", is wrong")
 				question += 1
-		return correct
 					
 
 	def submit(self):
@@ -118,7 +117,7 @@ class SummativeTest(Frame):
 			answers.append(self.var[i].get())
 		self.answers = answers
 		self.mark = 0
-		a = self.checkAnswers()
+		self.checkAnswers()
 		print("Mark: " + str(self.mark))
 		mark = self.mark
 		exit()	

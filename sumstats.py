@@ -66,7 +66,7 @@ class summativeStats(Frame):
 				self.FileName = str(var.get())
 				with open("Summative/%s " %self.FileName) as f:
 					reader = csv.reader(f)
-					for i in range(0,12):
+					for i in range(0,11):
 						next(f)
 					reader = csv.reader(f)
 					t = Text(self)
@@ -117,7 +117,7 @@ class summativeStats(Frame):
 		return average
 
 	def plot_scores(self, *args):
-		load =np.loadtxt("Summative/%s" %self.FileName,skiprows=13,dtype=str)
+		load =np.loadtxt("Summative/%s" %self.FileName,skiprows=11,dtype=str)
 		total = 0
 		clean = []
 		studentId = []
