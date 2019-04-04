@@ -10,6 +10,8 @@ def open_create_test_page(u_id):
 
 	print("open_create_test_page")
 	print(u_id)
+	Lecturer_Home.resultstwo=[]
+	Lecturer_Home.results=[]
 	root.destroy()
 	CreatingTest.main(u_id)
 	
