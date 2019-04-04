@@ -3,6 +3,7 @@ import Student_Home
 import Lecturer_Home
 import sumstats
 from Formulative import formative
+from Summative import Summative as summative
 
 print('Logging in now')
 user_id = lg.main()
@@ -20,7 +21,11 @@ print('Finding the right window')
 if user_info[3] == 'S':
 	test = Student_Home.main()
 	print(test)
-	score, correctly_answerd = formative.main(test)
-	print('Scored: %s on test %s answering questions: %s correctly.' %(score,test,correctly_answerd))
+	if test[1] == 'F':
+		score, correctly_answerd = formative.main(test)
+		print('Scored: %s on test %s answering questions: %s correctly.' %(score,test,correctly_answerd))
+	else:
+		score = summative.main(test)
+		print('Scored: %s on test %s.' %(score,test))
 else:
 	Lecturer_Home.main(user_info)
