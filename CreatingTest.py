@@ -36,16 +36,30 @@ class Questionaire(Frame):
 
 		self.Question = Entry()
 		self.Question.grid(sticky=NW,row=0,column=0,padx=160,pady=5)
+<<<<<<< HEAD
+=======
+
+>>>>>>> f8a137912c7e5b24ba3cac4dafd8e5dd8a53e3f1
 		self.Answer = Entry()
 		self.Answer.grid(sticky=NW,row=0,column=0,padx=160,pady=35)
 		self.Feedback = Entry()
 		self.Feedback.grid(sticky=NW,row=0,column=0,padx=160,pady=60)
+<<<<<<< HEAD
+=======
+		
+
+
+>>>>>>> f8a137912c7e5b24ba3cac4dafd8e5dd8a53e3f1
 		self.Answer = Entry()
 		self.Answer.grid(sticky=NW,row=0,column=0,padx=160,pady=35)
 		
 		self.Feedback = Entry()
 		self.Feedback.grid(sticky=NW,row=0,column=0,padx=160,pady=60)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> f8a137912c7e5b24ba3cac4dafd8e5dd8a53e3f1
 		button1 = Button(self, text="Next Answer", command =self.Next_Answer ).grid(sticky=E,row=0,column=3)
 
 		button2 = Button(self, text= "Next Question", command =self.Next_Question).grid(sticky=E,row=1,column=3)
@@ -145,7 +159,7 @@ class Questionaire(Frame):
 	def Saving(self):
 		if Questionaire.TestType=="S":
 			i = 0
-			while os.path.exists("TS_%s.csv" % i):
+			while os.path.exists(str(os.getcwd())+'\\Summative\\'+"TS_%s.csv" % i):
 				i += 1
 
 			fh = open(str(os.getcwd())+'\\Summative\\'+"TS_%s.csv" % i, "w")
