@@ -1,6 +1,7 @@
 from tkinter import *
 global root,sel
 import Lecturer_Home
+import os
 
 def sel(value):
     global root, sel
@@ -14,6 +15,7 @@ def home():
 
 class FormativeStats(Frame):
     # GUI Setup
+    results=[]
     def __init__(self, master):
         # Initialise Formative Stats class
         
@@ -21,7 +23,9 @@ class FormativeStats(Frame):
         self.grid()
         self.introLabel()
         self.searches()
+        self.openFormative()
         self.testList()
+        
 
     def introLabel(self):
         introLabel = Label(self, 
@@ -37,19 +41,26 @@ class FormativeStats(Frame):
 
         Button(self, text='Home',command=home, fg = "black", bg= "white", font = "Helvetica 18 bold").grid(row=2, column=3, sticky=W, padx=10, pady=10)
 
+    def openFormative(self):
+        
+        count = 0.0
+        for file in os.listdir("Formulative"):
+            if file.endswith(".csv"):
+                FormativeStats.results.append(file)
+        
+
 
     def testList(self):
         listbox = Listbox(self)
         listbox.grid(row=2, column=1)
-        #str(os.getcwd())+'\\Formulative\\'
-        test = ['TF_0.csv']#[{1:["Template", ":Computing"], 2:["TF_0", ":History"]}]
+        test = FormativeStats.results 
         for key in range(len(test)):
             
-            value = test[key]#test.get(key)
+            value = test[key]
             listbox.insert(END, value)
             
         def CurSelect(evt):
-            sel((listbox.get(listbox.curselection()))[0])
+            sel((listbox.get(listbox.curselection())))
 
             
         listbox.bind('<<ListboxSelect>>',CurSelect)

@@ -7,6 +7,7 @@ global root
 from collections import Counter
 import Lecturer_Home
 from Formulative import formative_stat_selection
+import os
 
 def home():
     global root
@@ -22,6 +23,7 @@ class FormativeStats(Frame):
         Frame.__init__(self, master)
         self.grid()
         self.filename = test
+        print("Dis")
         print(self.filename)
         self.introLabel()
         self.searches()
@@ -80,7 +82,9 @@ class FormativeStats(Frame):
             plt.show()
             
         def get_scores(filename):
-            with open(filename+'.csv') as f:
+            print(filename)
+
+            with open(str(os.getcwd())+'\\Formulative\\'+filename) as f:
                 reader = csv.reader(f)
                 raw_data = [r for r in reader]
             f.close()
