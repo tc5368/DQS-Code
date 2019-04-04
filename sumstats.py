@@ -175,7 +175,7 @@ def main(user_info):
 	print("inMain")				
 	root= Tk()
 	root.title("Summative Statistic Page")
-	root.geometry("600x400")
+	root.geometry("800x600")
 	app = summativeStats(root,user_info)
 	root.mainloop()
 

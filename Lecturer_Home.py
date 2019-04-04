@@ -8,8 +8,9 @@ def open_create_test_page(u_id):
 	global root
 	print("open_create_test_page")
 	print(u_id)
-	root.destroy()
 	sumstats.main(u_id)
+	root.destroy()
+	
 
 def open_statistics_page():
 	global root
@@ -96,7 +97,7 @@ class Lecturer_Home(Frame):
 def main(user_info):
 	global root
 	root = Tk()
-	root.geometry("600x400")
+	root.geometry("800x600")
 	root.title("Lecturer Home")
 	app = Lecturer_Home(root,user_info)
 	root.mainloop()
