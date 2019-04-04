@@ -19,6 +19,7 @@ print('Succsesfully found info: ',user_info)
 print('Finding the right window')
 if user_info[3] == 'S':
 	test = Student_Home.main()
+	print(test)
 	score, correctly_answerd = formative.main(test)
 	print('Scored: %s on test %s answering questions: %s correctly.' %(score,test,correctly_answerd))
 else:

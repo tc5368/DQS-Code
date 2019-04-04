@@ -3,14 +3,20 @@ from tkinter import *
 import sumstats
 from Formulative import formative_stat_present
 import os
+import CreatingTest			
 
 def open_create_test_page(u_id):
 	global root
+<<<<<<< HEAD
 	print("open_create_test_page")
 	print(u_id)
 	sumstats.main(u_id)
 	root.destroy()
 	
+=======
+	root.destroy()
+	CreatingTest.main(u_id)
+>>>>>>> 00575127e1a9a7132bafd524478b5973793e1f5a
 
 def open_statistics_page():
 	global root
@@ -38,7 +44,6 @@ class Lecturer_Home(Frame):
 
 
 	def create_Buttons(self):
-
 		Create_Test = Button(self, text='Create Test',command=lambda:open_create_test_page(self.user_info))
 		Create_Test.grid(row=2,column=17)
 		Create_Test = Button(self, text='View Results',command=open_statistics_page)
@@ -74,9 +79,7 @@ class Lecturer_Home(Frame):
 		for files in Lecturer_Home.results:
 			print(files)
 			count +=1.0
-			tf.insert(count,files+'\n')
-			
-		
+			tf.insert(count,files+'\n')		
 
 	def openSummative(self):
 		count = 0.0
@@ -90,9 +93,6 @@ class Lecturer_Home(Frame):
 			print(files)
 			count +=1.0
 			ts.insert(count,files+'\n')
-			
-		
-
 
 def main(user_info):
 	global root
