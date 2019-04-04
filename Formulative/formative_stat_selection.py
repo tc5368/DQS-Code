@@ -42,7 +42,7 @@ class FormativeStats(Frame):
         listbox = Listbox(self)
         listbox.grid(row=2, column=1)
         
-        test = {1:["Template", ":Computing"], 2:[113, ":History"], 3:[114, ":Maths"], 4:[115, ":English"]}
+        test = {1:["Template", ":Computing"], 2:["TF_0", ":History"]}
         for key in test:
             
             value = test.get(key)
