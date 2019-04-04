@@ -18,7 +18,6 @@ print('Succsesfully found info: ',user_info)
 print('Finding the right window')
 if user_info[3] == 'S':
 	test = Student_Home.main()
-	print(test)
 	formative.main(test)
 else:
 	Lecturer_Home.main()

@@ -12,7 +12,6 @@ class FormativeTest(Frame):
 		self.attempt = 1
 		self.widget()
 		self.filename = (str(os.getcwd())+'\\Formulative\\'+filename)
-		print(filename)
 		self.var = {}
 		self.select = []
 		self.saved_an = []
@@ -93,7 +92,6 @@ class FormativeTest(Frame):
 			question = 0
 			for line in csvread:
 				correct.append([])
-				print(line,self.answers[question])
 				if self.answers[question] == []:
 					print("")
 
