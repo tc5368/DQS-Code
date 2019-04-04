@@ -4,10 +4,10 @@ import tkinter as tk
 import csv, os, Lecturer_Home
 from tkinter import messagebox
 
-def home():
+def home(u):
 	global root
 	root.destroy()
-	Lecturer_Home.main()
+	Lecturer_Home.main(u)
 
 class Questionaire(Frame):
 	pop = []
@@ -34,11 +34,14 @@ class Questionaire(Frame):
 		Label(self,text ="Feedback").grid(sticky=W,padx=5)
 		Label(self,text ="The First Answer Inputed Needs To Be The Correct Answer").grid(sticky=W,padx=5)
 
-		self.Question = Entry().grid(sticky=NW,row=0,column=0,padx=160,pady=5)
+		self.Question = Entry()
+		self.Question.grid(sticky=NW,row=0,column=0,padx=160,pady=5)
 
-		self.Answer = Entry().grid(sticky=NW,row=0,column=0,padx=160,pady=35)
-
-		self.Feedback = Entry().grid(sticky=NW,row=0,column=0,padx=160,pady=60)
+		self.Answer = Entry()
+		self.Answer.grid(sticky=NW,row=0,column=0,padx=160,pady=35)
+		
+		self.Feedback = Entry()
+		self.Feedback.grid(sticky=NW,row=0,column=0,padx=160,pady=60)
 
 		button1 = Button(self, text="Next Answer", command =self.Next_Answer ).grid(sticky=E,row=0,column=3)
 
@@ -47,7 +50,7 @@ class Questionaire(Frame):
 		button3 = Button(self, text="Save", command =self.Saving ).grid(sticky=E,row=2,column=3)
 
 
-		button4 = Button(self, text="Home", command = home).grid(sticky=E,row=3,column=3)
+		button4 = Button(self, text="Home", command = lambda:home(self.user_id)).grid(sticky=E,row=3,column=3)
 		
 		i = 0
 		while os.path.exists(str(os.getcwd())+'\\Summative\\'+"TS_%s.csv" % i):
