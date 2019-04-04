@@ -150,7 +150,7 @@ class Questionaire(Frame):
 	def Saving(self):
 		if Questionaire.TestType=="S":
 			i = 0
-			while os.path.exists("TS_%s.csv" % i):
+			while os.path.exists(str(os.getcwd())+'\\Summative\\'+"TS_%s.csv" % i):
 				i += 1
 
 			fh = open(str(os.getcwd())+'\\Summative\\'+"TS_%s.csv" % i, "w")
