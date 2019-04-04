@@ -36,13 +36,13 @@ class Questionaire(Frame):
 
 		self.Question = Entry()
 		self.Question.grid(sticky=NW,row=0,column=0,padx=160,pady=5)
-<<<<<<< HEAD
+
 		self.Answer = Entry()
 		self.Answer.grid(sticky=NW,row=0,column=0,padx=160,pady=35)
 		self.Feedback = Entry()
 		self.Feedback.grid(sticky=NW,row=0,column=0,padx=160,pady=60)
 		
-=======
+
 
 		self.Answer = Entry()
 		self.Answer.grid(sticky=NW,row=0,column=0,padx=160,pady=35)
@@ -50,7 +50,7 @@ class Questionaire(Frame):
 		self.Feedback = Entry()
 		self.Feedback.grid(sticky=NW,row=0,column=0,padx=160,pady=60)
 
->>>>>>> 1b4150e376fb3367ba6eca0febe018aff9af1969
+
 		button1 = Button(self, text="Next Answer", command =self.Next_Answer ).grid(sticky=E,row=0,column=3)
 
 		button2 = Button(self, text= "Next Question", command =self.Next_Question).grid(sticky=E,row=1,column=3)
