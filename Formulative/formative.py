@@ -2,6 +2,7 @@ from tkinter import *
 import tkinter as tk
 import csv
 import os
+import random
 
 class FormativeTest(Frame):
 
@@ -53,7 +54,6 @@ class FormativeTest(Frame):
 			csvread = csv.reader(csvfile)
 			next(csvread)
 			for line in csvread:
-				print(line)
 				self.var[index] = StringVar()
 
 				label = Label(self, text = line[0])
@@ -61,14 +61,17 @@ class FormativeTest(Frame):
 				
 				row_n += 1
 				
-				radiobutton1 = Radiobutton(self, text = line[1], variable = self.var[index], value = 'A', command = self.selection)
-				radiobutton1.grid(row = row_n,column = 0)
-				radiobutton2 = Radiobutton(self, text = line[2], variable = self.var[index], value = 'B', command = self.selection)
-				radiobutton2.grid(row = row_n,column = 1)
-				radiobutton3 = Radiobutton(self, text = line[3], variable = self.var[index], value = 'C', command = self.selection)
-				radiobutton3.grid(row = row_n,column = 2)
-				radiobutton4 = Radiobutton(self, text = line[4], variable = self.var[index], value = 'D', command = self.selection)
-				radiobutton4.grid(row = row_n,column = 3)
+				q = [line[1],line[2],line[3],line[4]]
+				random.shuffle(q)
+
+				radiobutton1 = Radiobutton(self, text = q[0], variable = self.var[index], value = q[0], command = self.selection)
+				radiobutton1.grid(row = row_n,column = 1)
+				radiobutton2 = Radiobutton(self, text = q[1], variable = self.var[index], value = q[1], command = self.selection)
+				radiobutton2.grid(row = row_n,column = 2)
+				radiobutton3 = Radiobutton(self, text = q[2], variable = self.var[index], value = q[2], command = self.selection)
+				radiobutton3.grid(row = row_n,column = 3)
+				radiobutton4 = Radiobutton(self, text = q[3], variable = self.var[index], value = q[3], command = self.selection)
+				radiobutton4.grid(row = row_n,column = 4)
 
 				row_n += 2
 				index += 1
@@ -85,8 +88,10 @@ class FormativeTest(Frame):
 		with open(self.filename) as csvfile:
 			csvread = csv.reader(csvfile)
 			next(csvread)
+			question = 0
 			for line in csvread:
-				print(line,self.answers)
+				print(line,self.answers[question])
+				question += 1
 				if self.saved_an == []:
 					print("")
 
