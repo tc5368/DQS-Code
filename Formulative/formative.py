@@ -3,6 +3,7 @@ import tkinter as tk
 import csv
 import os
 import random
+global root, mark
 
 class FormativeTest(Frame):
 
@@ -91,7 +92,6 @@ class FormativeTest(Frame):
 			next(csvread)
 			question = 0
 			for line in csvread:
-				correct.append([])
 				if self.answers[question] == []:
 					print("")
 
@@ -106,9 +106,11 @@ class FormativeTest(Frame):
 				else:
 					print(line[0]+", is wrong")
 				question += 1
+		return correct
 					
 
 	def submit(self):
+		global mark, correctly_answerd
 		answers = []
 		for i in self.var:
 			answers.append(self.var[i].get())
@@ -116,21 +118,26 @@ class FormativeTest(Frame):
 
 		if self.attempt == 1 or self.attempt == 2:
 			self.attempt += 1
-			self.checkAnswers()
+			a = self.checkAnswers()
 			
 		elif self.attempt == 3:
-			self.attempt = 1
 			self.mark = 0
-			self.checkAnswers()
+			a = self.checkAnswers()
 			
 			print("Mark: " + str(self.mark))
-			self.destroy('')
-		self.attempt_label()
-	
+			mark = self.mark
+			correctly_answerd = a 
+			exit()	
+
+def exit():
+	global root
+	root.destroy()
 
 def main(filename):
+	global root
 	root = Tk()
 	root.title("Formative Test")
 	root.geometry("400x700")
 	app = FormativeTest(root, filename)
 	root.mainloop()
+	return mark, correctly_answerd
