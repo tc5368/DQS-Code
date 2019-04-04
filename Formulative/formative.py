@@ -137,7 +137,7 @@ def main(filename):
 	global root
 	root = Tk()
 	root.title("Formative Test")
-	root.geometry("400x700")
+	root.geometry("800x600")
 	app = FormativeTest(root, filename)
 	root.mainloop()
 	return mark, correctly_answerd

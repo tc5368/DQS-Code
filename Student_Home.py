@@ -70,7 +70,7 @@ class Student_Home(Frame):
 def main():
     global root
     root = Tk()
-    root.geometry("600x400")
+    root.geometry("800x600")
     root.title("Student Home")
     app = Student_Home(root)
     root.mainloop()

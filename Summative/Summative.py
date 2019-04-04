@@ -55,6 +55,7 @@ class viewSummative(Frame):
 
 # Main
 root = Tk()
+root.geometry("800x600")
 root.title("View Summative Results")
 app = viewSummative(root)
 root.mainloop()
